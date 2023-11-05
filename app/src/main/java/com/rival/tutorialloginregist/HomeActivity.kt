@@ -19,10 +19,10 @@ class HomeActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> replaceFragment(Home())
-                //R.id.Product -> replaceFragment(Profile())
+                R.id.setting -> replaceFragment(Profile())
                 R.id.fab -> replaceFragment(ScanFragment())
                 R.id.profile -> replaceFragment(Settings())
-                R.id.setting -> replaceFragment(SettingFragment())
+                R.id.Product -> replaceFragment(SettingFragment())
                 else -> {
                     // Handle other cases
                 }

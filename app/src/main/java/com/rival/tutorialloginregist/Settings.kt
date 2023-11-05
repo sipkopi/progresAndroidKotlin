@@ -19,6 +19,8 @@ class Settings : Fragment() {
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var textView6 : TextView
+    private lateinit var textView3 : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,9 +53,17 @@ class Settings : Fragment() {
 
         // Inside onCreateView() method
         val signOutButton = view.findViewById<Button>(R.id.btn_logout)
+        textView6 = view.findViewById(R.id.textView6)
+        textView3 = view.findViewById(R.id.textView3)
+
         signOutButton.setOnClickListener {
             signOutAndStartSignInActivity()
         }
+        textView3.setOnClickListener {
+            val intent = Intent(activity, ContactUs::class.java)
+            startActivity(intent)
+        }
+
 
         return view
     }

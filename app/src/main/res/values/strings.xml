@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Tutorial Login Regist</string>
+    <string name="app_name">SIP Kopi</string>
+    <string name="google_map_api_key">AIzaSyCuhwxnfmQu5C-2M-0kQMUbfaLU5f9boc4</string>
+    <string name="banner_adunit_id">ca-app-pub-3940256099942544/6300978111</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="date">A thin wrapper around a millisecond value that allows JDBC to identify this as an SQL DATE

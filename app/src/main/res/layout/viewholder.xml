@@ -8,28 +8,34 @@
     android:elevation="3dp"
     android:layout_margin="20dp">
 
-    <ImageView
-        android:id="@+id/removeFeeder"
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
 
-        android:layout_width="135dp"
-        android:layout_height="170dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pic1" />
+        <ImageView
+            android:id="@+id/removeFeeder1"
+            android:layout_width="135dp"
+            android:layout_height="170dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/pic1" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
-
-        android:id="@+id/feederName"
+        android:id="@+id/feederName1"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="33dp"
+        android:background="@drawable/background_title_news"
+        android:gravity="center"
+        android:lines="2"
         android:text="TextView"
         android:textSize="14sp"
-        android:lines="2"
-        android:gravity="center"
-        android:background="@drawable/background_title_news"
-        app:layout_constraintBottom_toBottomOf="@+id/removeFeeder"
+        app:layout_constraintTop_toBottomOf="@+id/removeFeeder1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

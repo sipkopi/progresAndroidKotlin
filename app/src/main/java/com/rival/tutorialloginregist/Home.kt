@@ -1,10 +1,12 @@
 package com.rival.tutorialloginregist
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
@@ -21,7 +23,9 @@ class Home : Fragment() {
     private lateinit var usernameTextView: TextView
     private lateinit var adapter: RecyclerView.Adapter<*>
     private lateinit var recyclerViewList: RecyclerView
-
+    private lateinit var textView9 : TextView
+    private lateinit var textView7 : TextView
+    private lateinit var imageView1 : ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,29 +39,22 @@ class Home : Fragment() {
         // Mengambil nama pengguna dari SessionManager
         val sessionManager = SessionManager(requireContext())
         val username = sessionManager.getUsername()
-        txt_Seeall = view.findViewById(R.id.txt_seeall)
-        txt_Seeall.setOnClickListener {
-            // Create an instance of Fragment2 (the destination fragment)
-            val fragment2 = Profile()
 
-            // Get the FragmentManager
-            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
-
-            // Start a new FragmentTransaction
-            val transaction: FragmentTransaction = fragmentManager.beginTransaction()
-
-            // Replace the current fragment (Fragment1) with Fragment2
-            transaction.replace(R.id.recView, fragment2)
-            transaction.addToBackStack(null) // Add to the back stack (optional)
-
-            // Commit the transaction
-            transaction.commit()
-        }
-        txt_Seeall = view.findViewById(R.id.txt_seeall)
+        textView9 = view.findViewById(R.id.textView9)
+        textView7 = view.findViewById(R.id.textView7)
+        imageView1 = view.findViewById(R.id.imageView1)
 
         // Tambahkan onClickListener untuk TextView
-        txt_Seeall.setOnClickListener {
+        textView9.setOnClickListener {
             val intent = Intent(activity, NotifikasiActivity::class.java)
+            startActivity(intent)
+        }
+        imageView1.setOnClickListener {
+            val intent = Intent(activity, WeatherActivity::class.java)
+            startActivity(intent)
+        }
+        textView7.setOnClickListener {
+            val intent = Intent(activity, MapActivity::class.java)
             startActivity(intent)
         }
 

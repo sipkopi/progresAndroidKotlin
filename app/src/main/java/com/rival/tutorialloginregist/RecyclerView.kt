@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.rival.tutorialloginregist.Scan.coffe
+import com.rival.tutorialloginregist.coffe
 
 class RecyclerView : AppCompatActivity() {
 

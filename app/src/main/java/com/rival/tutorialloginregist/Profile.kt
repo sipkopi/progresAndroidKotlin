@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.rival.tutorialloginregist.Scan.coffe
+import com.rival.tutorialloginregist.coffe
 
 class Profile : Fragment() {
 
@@ -61,24 +61,24 @@ class Profile : Fragment() {
         )
 
         recView = view.findViewById(R.id.recView)
-        recView.layoutManager = GridLayoutManager(requireContext(), 3)
+        recView.layoutManager = GridLayoutManager(requireContext(), 2)
         recView.setHasFixedSize(true)
 
         itemArrayList = arrayListOf()
 
-        //getData()
+        getData()
 
-        //recView.adapter = RecAadapter(itemArrayList)
+        recView.adapter = RecAadapter(itemArrayList)
 
         return view
     }
 
-//    private fun getData() {
-//        for (i in imageId.indices) {
-//            if (i < names.size && i < ingredients.size) {
-//                val coffee = coffe(imageId[i], names[i], ingredients[i])
-//                itemArrayList.add(coffee)
-//            }
-//        }
-//    }
+    private fun getData() {
+        for (i in imageId.indices) {
+            if (i < names.size && i < ingredients.size) {
+                val coffee = coffe(imageId[i], names[i], ingredients[i])
+                itemArrayList.add(coffee)
+            }
+        }
+    }
 }
