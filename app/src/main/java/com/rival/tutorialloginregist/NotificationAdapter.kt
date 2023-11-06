@@ -13,6 +13,7 @@ class NotificationAdapter(private val notifications: List<NotificationItem>) :
     inner class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
         val messageTextView: TextView = itemView.findViewById(R.id.messageTextView)
+        val datetimeTextView : TextView = itemView.findViewById(R.id.datetimeTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
@@ -22,9 +23,10 @@ class NotificationAdapter(private val notifications: List<NotificationItem>) :
     }
 
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
-        val currentItem = notifications[position]
-        holder.titleTextView.text = currentItem.title
-        holder.messageTextView.text = currentItem.message
+        val notificationItem = notifications[position]
+        holder.titleTextView.text = notificationItem.title
+        holder.messageTextView.text = notificationItem.message
+        holder.datetimeTextView.text = notificationItem.datetime // Menampilkan tanggal dan waktu
     }
 
     override fun getItemCount(): Int {

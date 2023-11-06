@@ -32,5 +32,12 @@
             android:text="Message"
             android:textSize="14sp"
             tools:text="Message" />
+        <TextView
+            android:id="@+id/datetimeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textSize="14sp"
+            tools:text="Date" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -69,11 +69,19 @@ class NotifikasiActivity : AppCompatActivity() {
 
         // Simpan data notifikasi ke SharedPreferences
         val sharedPreferences = getSharedPreferences("NotificationData", Context.MODE_PRIVATE)
+
+        // Membaca notifikasi yang sudah ada
+        val notificationsSet = sharedPreferences.getStringSet("notifications", HashSet<String>()) ?: HashSet()
+        val newNotification = "$title,$message,$time"
+
+        // Menambahkan notifikasi baru ke daftar notifikasi yang sudah ada
+        notificationsSet.add(newNotification)
+
         val editor = sharedPreferences.edit()
-        editor.putString("title", title)
-        editor.putString("message", message)
+        editor.putStringSet("notifications", notificationsSet)
         editor.apply()
     }
+
 
     private fun showAlert(time: Long, title: String, message: String) {
         val date = Date(time)

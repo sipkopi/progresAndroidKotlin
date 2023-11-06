@@ -14,18 +14,22 @@ class CoffeDetail : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_coffe_detail, container, false)
 
-        val detailDesc = view.findViewById<TextView>(R.id.detailDesc)
-        val detailTitle = view.findViewById<TextView>(R.id.detailTitle)
-        val detailImage = view.findViewById<ImageView>(R.id.detailImage)
+        // Ambil data yang dikirimkan dari ProfileFragment
+        val image = arguments?.getInt("image", 0)
+        val title = arguments?.getString("title")
+        val ingredients = arguments?.getString("ingredients")
 
-        val bundle = arguments
-        if (bundle != null) {
-            detailDesc.text = bundle.getString("Desc")
-            detailImage.setImageResource(bundle.getInt("Image"))
-            detailTitle.text = bundle.getString("Title")
-        }
+        val imgView = view.findViewById<ImageView>(R.id.detailImage)
+        val titleView = view.findViewById<TextView>(R.id.detailTitle)
+        val ingredientsView = view.findViewById<TextView>(R.id.detailDesc)
+
+        // Set data yang diterima ke komponen tampilan yang sesuai
+        imgView.setImageResource(image ?: R.drawable.kopi1) // Default image jika image tidak diterima
+        titleView.text = title ?: "No Title" // Default title jika title tidak diterima
+        ingredientsView.text = ingredients ?: "No Ingredients" // Default ingredients jika ingredients tidak diterima
 
         return view
     }

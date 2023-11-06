@@ -1,5 +1,4 @@
 package com.rival.tutorialloginregist
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,47 +17,37 @@ class Profile : Fragment() {
     private lateinit var recView: RecyclerView
     private lateinit var itemArrayList: ArrayList<coffe>
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Inisialisasi properti imageId, names, dan ingredients
+        imageId = arrayOf(
+            R.drawable.kopi1,
+            R.drawable.kopi2,
+            R.drawable.kopi3,
+            R.drawable.kopi1
+        )
+
+        names = arrayOf(
+            "Arabica Coffee",
+            "Robusta Coffee",
+            "Liberica Coffee",
+            "Arabica Coffe"
+        )
+
+        ingredients = arrayOf(
+            "Blue Mountain",
+            "Natural",
+            "Full Wash",
+            "Orange Bourboun"
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.activity_recycler_view, container, false)
-
-        imageId = arrayOf(
-            R.drawable.kopi1,
-            R.drawable.kopi2,
-            R.drawable.kopi3,
-            R.drawable.kopi1,
-            R.drawable.kopi2,
-            R.drawable.kopi3,
-            R.drawable.kopi1,
-            R.drawable.kopi2,
-            R.drawable.kopi3
-        )
-
-        names = arrayOf(
-            "Arabica Coffee 1",
-            "Robusta Coffee 2",
-            "Liberica Coffee 3",
-            "Arabica Coffee 4",
-            "Robusta Coffee 5",
-            "Liberica Coffee 6",
-            "Arabica Coffee 7",
-            "Robusta Coffee 8",
-            "Liberica Coffee 9"
-        )
-
-        ingredients = arrayOf(
-            "Blue Mountain 1, cheese, oregano",
-            "Blue Mountain 2, cheese, oregano",
-            "Blue Mountain 3, cheese, oregano",
-            "Blue Mountain 4, cheese, oregano",
-            "Blue Mountain 5, cheese, oregano",
-            "Blue Mountain 6, cheese, oregano",
-            "Blue Mountain 7, cheese, oregano",
-            "Blue Mountain 8, cheese, oregano",
-            "Blue Mountain 9, cheese, oregano"
-        )
 
         recView = view.findViewById(R.id.recView)
         recView.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -68,7 +57,25 @@ class Profile : Fragment() {
 
         getData()
 
-        recView.adapter = RecAadapter(itemArrayList)
+        val adapter = RecAadapter(itemArrayList)
+
+        recView.adapter = adapter
+
+        // Mengatur item click listener di adapter
+        adapter.setOnItemClickListener { currentItem ->
+            val fragmentKopiDetail = CoffeDetail()
+
+            val bundle = Bundle()
+            bundle.putInt("image", currentItem.imageTitle)
+            bundle.putString("title", currentItem.name)
+            bundle.putString("ingredients", currentItem.ingredients)
+            fragmentKopiDetail.arguments = bundle
+
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frame_layout, fragmentKopiDetail)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
 
         return view
     }

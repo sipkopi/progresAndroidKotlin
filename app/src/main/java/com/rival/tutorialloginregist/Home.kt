@@ -50,11 +50,11 @@ class Home : Fragment() {
             startActivity(intent)
         }
         imageView1.setOnClickListener {
-            val intent = Intent(activity, WeatherActivity::class.java)
+            val intent = Intent(activity, NotifikasiActivity2::class.java)
             startActivity(intent)
         }
         textView7.setOnClickListener {
-            val intent = Intent(activity, MapActivity::class.java)
+            val intent = Intent(activity, WeatherActivity::class.java)
             startActivity(intent)
         }
 

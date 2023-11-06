@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rival.tutorialloginregist.databinding.ActivityNotifikasi2Binding
+import java.util.Date
 
 class NotifikasiActivity2 : AppCompatActivity() {
 
@@ -21,15 +22,26 @@ class NotifikasiActivity2 : AppCompatActivity() {
         recyclerView = binding.notificationRecyclerView
 
         // Baca data notifikasi dari SharedPreferences
-        val sharedPreferences: SharedPreferences = getSharedPreferences("NotificationData", Context.MODE_PRIVATE)
-        val title = sharedPreferences.getString("title", "")
-        val message = sharedPreferences.getString("message", "")
+        val sharedPreferences = getSharedPreferences("NotificationData", Context.MODE_PRIVATE)
 
+        // Membaca semua notifikasi dari SharedPreferences
+        val notificationsSet = sharedPreferences.getStringSet("notifications", HashSet<String>()) ?: HashSet()
         val notifications = mutableListOf<NotificationItem>()
 
-        // Cek apakah terdapat data notifikasi yang sudah tersimpan
-        if (!title.isNullOrEmpty() && !message.isNullOrEmpty()) {
-            notifications.add(NotificationItem(title, message))
+        for (notificationStr in notificationsSet) {
+            val notificationData = notificationStr.split(",")
+            if (notificationData.size == 3) {
+                val title = notificationData[0]
+                val message = notificationData[1]
+                val time = notificationData[2].toLong()
+
+                val date = Date(time)
+                val dateFormat = android.text.format.DateFormat.getLongDateFormat(applicationContext)
+                val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
+                val datetime = "${dateFormat.format(date)} ${timeFormat.format(date)}"
+
+                notifications.add(NotificationItem(title, message, datetime))
+            }
         }
 
         // Set up RecyclerView
