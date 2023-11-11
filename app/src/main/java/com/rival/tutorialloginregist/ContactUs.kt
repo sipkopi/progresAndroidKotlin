@@ -1,8 +1,8 @@
 package com.rival.tutorialloginregist
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -27,15 +27,16 @@ class ContactUs : AppCompatActivity() {
     }
 
     private fun sendMessage(messageTxt: String) {
-        val packageManager = packageManager
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.type = "text/plain"
-        intent.setPackage("com.whatsapp")
-        intent.putExtra(Intent.EXTRA_TEXT, messageTxt)
+        val phone = "+6288803716911" // Replace with the recipient's phone number
 
-        if (intent.resolveActivity(packageManager) != null) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        val url = "https://api.whatsapp.com/send?phone=$phone&text=$messageTxt"
+
+        intent.data = Uri.parse(url)
+
+        try {
             startActivity(intent)
-        } else {
+        } catch (e: Exception) {
             Toast.makeText(
                 this,
                 "Please install WhatsApp first.",
@@ -44,4 +45,3 @@ class ContactUs : AppCompatActivity() {
         }
     }
 }
-

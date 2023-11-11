@@ -20,6 +20,7 @@
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kirim Pesan WhatsApp"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:background="@drawable/button_shape"
+        android:text="Kirim Pesan WhatsApp" />
 </RelativeLayout>
