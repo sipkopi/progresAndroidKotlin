@@ -52,4 +52,18 @@
         android:textSize="18sp"
         android:id="@+id/detailDesc"/>
 
+    <!-- Menambahkan atribut layout_weight pada elemen Button -->
+    <Button
+        android:id="@+id/btnLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/button_shape"
+        android:text="Lihat Lokasi Tanam"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@null"
+        android:layout_weight="1" />
 </LinearLayout>

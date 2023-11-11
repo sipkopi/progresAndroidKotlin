@@ -19,6 +19,7 @@
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:text="Title"
             android:textSize="18sp"
@@ -39,5 +40,15 @@
             android:text="Date"
             android:textSize="14sp"
             tools:text="Date" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hapus"
+            android:textSize="15dp"
+            android:id="@+id/tvkonfirmasi"
+            android:fontFamily="@font/poppinsbold"
+            android:textColor="@color/primary"
+            android:layout_marginStart="265dp"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

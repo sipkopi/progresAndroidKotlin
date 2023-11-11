@@ -22,8 +22,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mGoogleMap = googleMap
-        val lokasiku = LatLng(	-7.91175000, 	113.82178800)
-        mGoogleMap?.addMarker(MarkerOptions().position(lokasiku).title("Bondowoso-Jawa Timur"))
+        val lokasiku = LatLng(	-8.0522759, 	114.1677159)
+        mGoogleMap?.addMarker(MarkerOptions().position(lokasiku).title("Sempol,Bondowoso"))
         mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasiku, 15f))
     }
 }

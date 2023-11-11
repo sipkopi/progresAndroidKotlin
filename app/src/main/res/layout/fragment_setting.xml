@@ -1,11 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/pencatatan"
+    android:background="@drawable/form_pencatatan"
     tools:context=".SettingFragment">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/txJudul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="50dp"
+        android:fontFamily="@font/poppinsbold"
+        android:text="Pencatatan"
+        android:textColor="@color/primary"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txPembibitan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:fontFamily="@font/poppinssemibold"
+        android:text="Pembibitan"
+        android:textColor="@color/primary"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txJudul" />
+
+    <TextView
+        android:id="@+id/txPeremajaan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:textSize="18sp"
+        android:textColor="@color/primary"
+        android:fontFamily="@font/poppinssemibold"
+        android:text="Peremajaan"
+        app:layout_constraintStart_toStartOf="@+id/txPembibitan"
+        app:layout_constraintTop_toBottomOf="@+id/txPembibitan" />
+    <TextView
+        android:id="@+id/txPanen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:textSize="18sp"
+        android:textColor="@color/primary"
+        android:fontFamily="@font/poppinssemibold"
+        android:text="Panen"
+        app:layout_constraintStart_toStartOf="@+id/txPeremajaan"
+        app:layout_constraintTop_toBottomOf="@+id/txPeremajaan" />
+</androidx.constraintlayout.widget.ConstraintLayout>

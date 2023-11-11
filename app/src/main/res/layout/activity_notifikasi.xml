@@ -7,19 +7,29 @@
     android:orientation="vertical"
     tools:context=".NotifikasiActivity">
 
+    <!-- TextView untuk judul "Penjadwalan" -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Penjadwalan"
+        android:fontFamily="@font/poppinssemibold"
+        android:textColor="@color/primary"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="24sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/titleET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="title" />
+            android:hint="Judul" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -34,7 +44,7 @@
             android:id="@+id/messageET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="message" />
+            android:hint="Pesan" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,10 +81,11 @@
 
     <Button
         android:id="@+id/submitButton"
-        android:layout_marginTop="20dp"
+        android:layout_width="176dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Jadwalkan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_shape"
+        android:text="Jadwalkan" />
 
 </LinearLayout>

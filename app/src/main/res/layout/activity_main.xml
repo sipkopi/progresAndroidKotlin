@@ -1,123 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/onboarding"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="5dp"
-        android:fontFamily="@font/poppinsextra"
-        android:gravity="center"
-        android:text="Welcome !"
-        android:textColor="@color/primary"
-        android:textSize="40sp" />
-
-    <TextView
+    <Button
+        android:id="@+id/gSignInBtn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppinsregular"
-        android:gravity="center"
-        android:text="Silahkan login untuk melanjutkan"
-        android:textColor="@color/primary"
-        android:textSize="15sp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/google_btn"
+        android:text="Get Started"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="35dp">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/username"
-            android:fontFamily="@font/poppinsregular"
-            android:hint="Username"
-            android:id="@+id/edt_username"
-            android:paddingLeft="8dp"
-            android:paddingTop="5dp"
-            android:textSize="14dp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/edt_password"
-            android:background="@drawable/password"
-            android:fontFamily="@font/poppinsregular"
-            android:hint="Password"
-            android:paddingLeft="8dp"
-            android:paddingTop="5dp"
-            android:textSize="14dp" />
-
-        <TextView
-            android:id="@+id/txt_lupasandi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/poppinssemibold"
-            android:text="Lupa Password"
-            android:textColor="@color/primary" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/btn_login"
-            android:background="@drawable/button_shape"
-            android:backgroundTint="@color/primary"
-            android:fontFamily="@font/poppinssemibold"
-            android:text="Masuk" />
-
-        <TextView
-            android:layout_width="341dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/garis" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/gSignInBtn1"
-            android:text="google"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/button_shape" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="80dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:text="Belum Memiliki Akun?"
-            android:textColor="@color/primary" />
-
-        <TextView
-            android:id="@+id/register_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppinssemibold"
-            android:text=" Daftar"
-            android:textColor="@color/primary"
-            android:textSize="15sp"
-            android:layout_marginTop="1dp"/>
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,8 +33,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var registerButton: TextView
 
     private lateinit var dbHelper: SQLiteOpenHelper
-    private var loginAttempts = 0
-    private val maxLoginAttempts = 3
 
     // Inisialisasi SessionManager
     private lateinit var sessionManager: SessionManager
@@ -50,12 +48,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
-        LupaSandiButton = binding.txtLupasandi
         gSignInBtn = binding.gSignInBtn1
-        usernameEditText = binding.edtUsername
-        passwordEditText = binding.edtPassword
-        loginButton = binding.btnLogin
-        registerButton = binding.registerBtn
 
         // Inisialisasi SessionManager
         sessionManager = SessionManager(this)
@@ -85,51 +78,7 @@ class MainActivity : AppCompatActivity() {
         gSignInBtn.setOnClickListener {
             signIn()
         }
-
-        loginButton.setOnClickListener {
-            val inputUsername = usernameEditText.text.toString()
-            val inputPassword = passwordEditText.text.toString()
-
-            if (login(inputUsername, inputPassword)) {
-                // Login berhasil, tambahkan aksi yang sesuai di sini.
-                // Simpan sesi saat login berhasil
-                sessionManager.createLoginSession(inputUsername)
-
-                Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent)
-            } else {
-                // Login gagal
-                loginAttempts++
-
-                if (loginAttempts >= maxLoginAttempts) {
-                    // Jika jumlah kesalahan mencapai batas maksimal, arahkan ke aktivitas "Lupasandi"
-                    Toast.makeText(
-                        this,
-                        "Anda telah mencoba login sebanyak $maxLoginAttempts kali. Silakan reset kata sandi.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    val intent = Intent(this, LupaSandiActivity::class.java)
-                    startActivity(intent)
-                    finish() // Optional: Menutup aktivitas login agar pengguna tidak bisa kembali ke sana
-                } else {
-                    Toast.makeText(
-                        this,
-                        "Username atau kata sandi salah. Percobaan ke-$loginAttempts dari $maxLoginAttempts",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        }
-
-        registerButton.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
-        }
-
-        LupaSandiButton.setOnClickListener {
-            startActivity(Intent(this, LupaSandiActivity::class.java))
-        }
-    }
+   }
 
     private fun signIn() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
