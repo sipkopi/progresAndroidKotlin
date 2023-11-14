@@ -10,45 +10,62 @@
     app:cardUseCompatPadding="true"
     android:layout_margin="8dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:orientation="vertical"
         android:padding="16dp">
 
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:text="Title"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Title" />
 
         <TextView
             android:id="@+id/messageTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="Message"
             android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/titleTextView"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView"
             tools:text="Message" />
+
         <TextView
             android:id="@+id/datetimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Date"
             android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/tvkonfirmasi"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/messageTextView"
+            app:layout_constraintTop_toBottomOf="@+id/messageTextView"
             tools:text="Date" />
 
         <TextView
+            android:id="@+id/tvkonfirmasi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hapus"
-            android:textSize="15dp"
-            android:id="@+id/tvkonfirmasi"
+            android:layout_marginTop="65dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="2dp"
             android:fontFamily="@font/poppinsbold"
+            android:text="Sudah"
             android:textColor="@color/primary"
-            android:layout_marginStart="265dp"/>
-    </LinearLayout>
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

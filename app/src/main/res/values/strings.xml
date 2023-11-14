@@ -2,7 +2,7 @@
     <string name="app_name">SIP Kopi</string>
     <string name="google_map_api_key">AIzaSyCuhwxnfmQu5C-2M-0kQMUbfaLU5f9boc4</string>
     <string name="banner_adunit_id">ca-app-pub-3940256099942544/6300978111</string>
-        <string name="api_key2">cfcd8b7a6440333b004c5233853ecbb0</string>
+    <string name="api_key2">cfcd8b7a6440333b004c5233853ecbb0</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

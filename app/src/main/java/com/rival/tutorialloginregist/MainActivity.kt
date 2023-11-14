@@ -7,15 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import com.rival.tutorialloginregist.DatabaseHelper
-import com.rival.tutorialloginregist.HomeActivity
-import com.rival.tutorialloginregist.LupaSandiActivity
-import com.rival.tutorialloginregist.RegisterActivity
-import com.rival.tutorialloginregist.SessionManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -53,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         // Inisialisasi SessionManager
         sessionManager = SessionManager(this)
 
-        dbHelper = DatabaseHelper(this)
+        dbHelper = NotificationDbHelper(this)
 
         firebaseAuth = FirebaseAuth.getInstance()
 

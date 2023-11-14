@@ -1,22 +1,30 @@
+// NotifikasiActivity.kt
 package com.rival.tutorialloginregist
-import android.app.*
+
+import android.app.AlarmManager
+import android.app.AlertDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
-import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.getSystemService
 import com.rival.tutorialloginregist.databinding.ActivityNotifikasiBinding
 import java.util.*
 
 class NotifikasiActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNotifikasiBinding
+    private lateinit var dbHelper: NotificationDbHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNotifikasiBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Inisialisasi SQLite Database Helper
+        dbHelper = NotificationDbHelper(this)
 
         createNotificationChannel()
         binding.submitButton.setOnClickListener { scheduleNotification() }
@@ -27,9 +35,6 @@ class NotifikasiActivity : AppCompatActivity() {
         val message = binding.messageET.text.toString()
 
         if (title.isEmpty() || message.isEmpty()) {
-            // Tambahkan penanganan jika judul atau pesan kosong
-            // Misalnya, tampilkan pesan kesalahan
-            // atau hindari penjadwalan notifikasi
             return
         }
 
@@ -57,31 +62,17 @@ class NotifikasiActivity : AppCompatActivity() {
                 )
                 showAlert(time, title, message)
             } else {
-                // Handle the case where scheduling exact alarms is not permitted
-                // You might want to use setExact instead, or inform the user about the limitation
-                // Tambahkan penanganan kesalahan di sini jika perlu
+
             }
         } else {
-            // For versions prior to Android 12 (API 31), use setExact directly
+
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, time, pendingIntent)
             showAlert(time, title, message)
         }
 
-        // Simpan data notifikasi ke SharedPreferences
-        val sharedPreferences = getSharedPreferences("NotificationData", Context.MODE_PRIVATE)
+        dbHelper.insertNotification(title, message, time)
 
-        // Membaca notifikasi yang sudah ada
-        val notificationsSet = sharedPreferences.getStringSet("notifications", HashSet<String>()) ?: HashSet()
-        val newNotification = "$title,$message,$time"
-
-        // Menambahkan notifikasi baru ke daftar notifikasi yang sudah ada
-        notificationsSet.add(newNotification)
-
-        val editor = sharedPreferences.edit()
-        editor.putStringSet("notifications", notificationsSet)
-        editor.apply()
     }
-
 
     private fun showAlert(time: Long, title: String, message: String) {
         val date = Date(time)
@@ -113,7 +104,7 @@ class NotifikasiActivity : AppCompatActivity() {
         val name = "Notif Channel"
         val desc = "A Description of the Channel"
         val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel(channelID, name, importance)
+        val channel = NotificationChannel(NotificationDbHelper.CHANNEL_ID, name, importance)
         channel.description = desc
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)

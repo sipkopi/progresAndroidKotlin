@@ -5,14 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 class SplashActivity : AppCompatActivity() {
-    private val splashTimeOut: Long = 2000 // Waktu tampilan splash screen dalam milidetik (3 detik)
+    private val splashTimeOut: Long = 2500
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash) // Gunakan layout splash screen yang sudah Anda buat
+        setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-            val intent = Intent(this, MainActivity::class.java) // Ganti MainActivity dengan activity tujuan setelah splash screen
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }, splashTimeOut)

@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.rival.tutorialloginregist.databinding.ActivityRegisterBinding
-import com.rival.tutorialloginregist.MainActivity
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var registerName: EditText
@@ -25,7 +24,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        val dbHelper = DatabaseHelper(this)
+        val dbHelper = NotificationDbHelper(this)
 
         binding.loginBtn.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
@@ -51,7 +50,7 @@ class RegisterActivity : AppCompatActivity() {
         username: String,
         phone: String,
         password: String,
-        dbHelper: DatabaseHelper
+        dbHelper: NotificationDbHelper
     ): Boolean {
         val values = ContentValues()
         values.put("name", name)

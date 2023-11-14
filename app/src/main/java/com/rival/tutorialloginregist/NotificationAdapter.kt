@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.rival.tutorialloginregist.R
 
-class NotificationAdapter(private val notifications: MutableList<NotificationItem>) :
+class NotificationAdapter(private val notifications: MutableList<NotificationEntity>) :
     RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
 
     var onDeleteItemTextViewClick: ((position: Int) -> Unit)? = null
@@ -29,7 +29,8 @@ class NotificationAdapter(private val notifications: MutableList<NotificationIte
         val notificationItem = notifications[position]
         holder.titleTextView.text = notificationItem.title
         holder.messageTextView.text = notificationItem.message
-        holder.datetimeTextView.text = notificationItem.datetime // Menampilkan tanggal dan waktu
+        holder.datetimeTextView.text =
+            notificationItem.time.toString() // Menampilkan tanggal dan waktu
 
         // Menambahkan tindakan penghapusan saat "DeleteItem" ditekan
         holder.deleteItemTextView.setOnClickListener {

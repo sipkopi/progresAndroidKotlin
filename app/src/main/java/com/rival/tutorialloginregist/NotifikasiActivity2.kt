@@ -1,19 +1,19 @@
 package com.rival.tutorialloginregist
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rival.tutorialloginregist.databinding.ActivityNotifikasi2Binding
-import java.util.Date
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NotifikasiActivity2 : AppCompatActivity() {
 
     private lateinit var binding: ActivityNotifikasi2Binding
     private lateinit var recyclerView: RecyclerView
-    private lateinit var notifications: MutableList<NotificationItem>
+    private lateinit var dbHelper: NotificationDbHelper
+    private lateinit var notifications: MutableList<NotificationEntity>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,28 +22,24 @@ class NotifikasiActivity2 : AppCompatActivity() {
 
         recyclerView = binding.notificationRecyclerView
 
-        // Baca data notifikasi dari SharedPreferences
-        val sharedPreferences = getSharedPreferences("NotificationData", Context.MODE_PRIVATE)
+        // Inisialisasi SQLite Database Helper
+        dbHelper = NotificationDbHelper(this)
 
-        // Membaca semua notifikasi dari SharedPreferences
-        val notificationsSet = sharedPreferences.getStringSet("notifications", HashSet<String>()) ?: HashSet()
-        notifications = mutableListOf()
+        // Membaca semua notifikasi dari database SQLite
+        notifications = dbHelper.getAllNotifications().map { notificationEntity ->
+            try {
+                val dateMillis = notificationEntity.time.toLong()
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) // Sesuaikan dengan format tanggal yang sesuai
+                val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault()) // Sesuaikan dengan format waktu yang sesuai
+                val datetime = "${dateFormat.format(dateMillis)} ${timeFormat.format(dateMillis)}"
 
-        for (notificationStr in notificationsSet) {
-            val notificationData = notificationStr.split(",")
-            if (notificationData.size == 3) {
-                val title = notificationData[0]
-                val message = notificationData[1]
-                val time = notificationData[2].toLong()
-
-                val date = Date(time)
-                val dateFormat = android.text.format.DateFormat.getLongDateFormat(applicationContext)
-                val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
-                val datetime = "${dateFormat.format(date)} ${timeFormat.format(date)}"
-
-                notifications.add(NotificationItem(title, message, datetime))
+                NotificationEntity(notificationEntity.title, notificationEntity.message, datetime)
+            } catch (e: NumberFormatException) {
+                // Tangani kesalahan jika terjadi masalah konversi
+                android.util.Log.e("NotifikasiActivity2", "Error converting date: $e")
+                NotificationEntity(notificationEntity.title, notificationEntity.message, "Invalid Date")
             }
-        }
+        }.toMutableList()
 
         // Set up RecyclerView
         val adapter = NotificationAdapter(notifications)
@@ -57,16 +53,9 @@ class NotifikasiActivity2 : AppCompatActivity() {
     }
 
     private fun removeNotification(position: Int) {
-        val sharedPreferences = getSharedPreferences("NotificationData", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-
+        // Tangani penghapusan notifikasi dari database SQLite
         val notification = notifications[position]
-        val notificationStr = "${notification.title},${notification.message},${notification.datetime}"
-        val notificationsSet = sharedPreferences.getStringSet("notifications", HashSet<String>()) ?: HashSet()
-        notificationsSet.remove(notificationStr)
-
-        editor.putStringSet("notifications", notificationsSet)
-        editor.apply()
+        dbHelper.deleteNotification(notification.title, notification.message)
 
         notifications.removeAt(position)
         recyclerView.adapter?.notifyItemRemoved(position)

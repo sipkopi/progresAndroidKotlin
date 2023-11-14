@@ -1,5 +1,6 @@
 package com.rival.tutorialloginregist
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -80,13 +81,23 @@ class Settings : Fragment() {
     }
 
     private fun signOutAndStartSignInActivity() {
-        mAuth.signOut()
-
-        mGoogleSignInClient.signOut().addOnCompleteListener(requireActivity()) {
-            // Optional: Update UI or show a message to the user
-            val intent = Intent(requireActivity(), MainActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
-        }
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Konfirmasi Logout")
+            .setMessage("Apakah Anda Yakin Ingin Logout?")
+            .setPositiveButton("Ya") { _, _ ->
+                // Logout jika user memilih "Ya"
+                mAuth.signOut()
+                mGoogleSignInClient.signOut().addOnCompleteListener(requireActivity()) {
+                    // Optional: Update UI or show a message to the user
+                    val intent = Intent(requireActivity(), MainActivity::class.java)
+                    startActivity(intent)
+                    requireActivity().finish()
+                }
+            }
+            .setNegativeButton("Tidak") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
+
 }
