@@ -1,8 +1,11 @@
 package com.rival.tutorialloginregist
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -10,7 +13,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.rival.tutorialloginregist.coffe
 
-class RecAadapter(private val coffeList: ArrayList<coffe>) : RecyclerView.Adapter<RecAadapter.ViewHolder>() {
+class RecAadapter(private val coffeList: ArrayList<coffe>) : RecyclerView.Adapter<RecAadapter.ViewHolder>(), Filterable {
+
+    private var coffeListFiltered: ArrayList<coffe> = coffeList.toMutableList() as ArrayList<coffe>
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgTitle: ImageView = itemView.findViewById(R.id.imgTitle)
@@ -32,7 +37,7 @@ class RecAadapter(private val coffeList: ArrayList<coffe>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = coffeList[position]
+        val currentItem = coffeListFiltered[position]
 
         holder.imgTitle.setImageResource(currentItem.imageTitle)
         holder.tvName.text = currentItem.name
@@ -52,6 +57,37 @@ class RecAadapter(private val coffeList: ArrayList<coffe>) : RecyclerView.Adapte
     }
 
     override fun getItemCount(): Int {
-        return coffeList.size
+        return coffeListFiltered.size
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val queryString = constraint?.toString()?.toLowerCase()
+
+                val filterResults = FilterResults()
+                val filteredList = ArrayList<coffe>()
+
+                if (queryString.isNullOrBlank()) {
+                    filteredList.addAll(coffeList)
+                } else {
+                    for (item in coffeList) {
+                        if (item.name.toLowerCase().contains(queryString) ||
+                            item.ingredients.toLowerCase().contains(queryString)
+                        ) {
+                            filteredList.add(item)
+                        }
+                    }
+                }
+
+                filterResults.values = filteredList
+                return filterResults
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                coffeListFiltered = results?.values as ArrayList<coffe>
+                notifyDataSetChanged()
+            }
+        }
     }
 }

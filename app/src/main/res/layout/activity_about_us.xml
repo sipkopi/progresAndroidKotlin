@@ -4,16 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/aboutus1"
     tools:context=".AboutUs">
+
+    <TextView
+        android:id="@+id/judul"
+        android:layout_width="170dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppinsbold"
+        android:gravity="center"
+        android:text="Tentang Kami"
+        android:textColor="@color/primary"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="397dp"
+        android:layout_height="218dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="11dp"
+        android:background="@drawable/team"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/judul" />
 
     <Button
         android:id="@+id/LinkButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="304dp"
-        android:text="Kunjungi Kami"
+        android:layout_width="353dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="662dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/button_shape"
+        android:text="Kunjungi Kami di Web"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

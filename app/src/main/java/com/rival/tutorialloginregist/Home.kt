@@ -45,6 +45,13 @@ class Home : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+        val textSeeal : TextView = view.findViewById(R.id.txt_seeall)
+        textSeeal.setOnClickListener{
+            val fragment = Profile()
+            val transaction = fragmentManager?.beginTransaction()
+            transaction?.replace(R.id.frame_layout,fragment)?.commit()
+
+        }
 
         // Mengambil TextView dari layout
         usernameTextView = view.findViewById(R.id.txt_session)

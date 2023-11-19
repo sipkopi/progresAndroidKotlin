@@ -1,21 +1,24 @@
 package com.rival.tutorialloginregist
+
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.rival.tutorialloginregist.coffe
 
 class Profile : Fragment() {
 
     private lateinit var imageId: Array<Int>
     private lateinit var names: Array<String>
     private lateinit var ingredients: Array<String>
+    private lateinit var searchView: SearchView
 
     private lateinit var recView: RecyclerView
     private lateinit var itemArrayList: ArrayList<coffe>
+    private lateinit var adapter: RecAadapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,14 +35,14 @@ class Profile : Fragment() {
             "Arabica Coffee",
             "Robusta Coffee",
             "Liberica Coffee",
-            "Arabica Coffe"
+            "Arabica Coffee"
         )
 
         ingredients = arrayOf(
             "Blue Mountain",
             "Natural",
             "Full Wash",
-            "Orange Bourboun"
+            "Orange Bourbon"
         )
     }
 
@@ -49,16 +52,18 @@ class Profile : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.activity_recycler_view, container, false)
 
+        // Periksa apakah tipe objek yang dihasilkan adalah androidx.appcompat.widget.SearchView
+        searchView = view.findViewById(R.id.searchView)
+        searchView.clearFocus()
+
         recView = view.findViewById(R.id.recView)
         recView.layoutManager = GridLayoutManager(requireContext(), 2)
         recView.setHasFixedSize(true)
 
         itemArrayList = arrayListOf()
-
         getData()
 
-        val adapter = RecAadapter(itemArrayList)
-
+        adapter = RecAadapter(itemArrayList)
         recView.adapter = adapter
 
         // Mengatur item click listener di adapter
@@ -76,6 +81,18 @@ class Profile : Fragment() {
             transaction.addToBackStack(null)
             transaction.commit()
         }
+
+        // Set up SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return false
+            }
+        })
 
         return view
     }

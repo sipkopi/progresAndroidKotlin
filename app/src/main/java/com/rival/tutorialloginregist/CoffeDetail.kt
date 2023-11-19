@@ -29,8 +29,8 @@ private lateinit var btnLocation : Button
         val titleView = view.findViewById<TextView>(R.id.detailTitle)
         val ingredientsView = view.findViewById<TextView>(R.id.detailDesc)
 
-        // Set data yang diterima ke komponen tampilan yang sesuai
-        imgView.setImageResource(image ?: R.drawable.kopi1) // Default image jika image tidak diterima
+
+        imgView.setImageResource(image ?: R.drawable.kopi1)
         titleView.text = title ?: "No Title" // Default title jika title tidak diterima
         ingredientsView.text = ingredients ?: "No Ingredients" // Default ingredients jika ingredients tidak diterima
 

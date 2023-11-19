@@ -8,15 +8,32 @@
     tools:context=".MainActivity">
 
     <!-- SearchView -->
+
+    <TextView
+        android:id="@+id/judul"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="156dp"
+        android:fontFamily="@font/poppinssemibold"
+        android:text="Hasil Panen"
+        android:textColor="@color/primary"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/grey"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border_bg"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/judul" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recView"

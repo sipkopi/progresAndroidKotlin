@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -125,6 +126,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/sunrise"
+                        app:tint="@color/white"
                         />
 
                     <View
@@ -136,6 +138,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sunrise"
+                        android:textColor="@color/white"
                         android:textSize="12dp" />
 
                     <TextView
@@ -143,6 +146,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="06:40 AM"
+                        android:textColor="@color/white"
                         android:textSize="14dp" />
                 </LinearLayout>
 
@@ -159,17 +163,20 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:src="@drawable/sunset" />
+                        android:src="@drawable/sunset"
+                        app:tint="@color/white"/>
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sunset"
+                        android:textColor="@color/white"
                         android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/sunset"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="06:40 AM"
@@ -189,13 +196,15 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:src="@drawable/wind" />
+                        android:src="@drawable/wind"
+                        app:tint="@color/white"/>
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Wind"
+                        android:textColor="@color/white"
                         android:textSize="12dp" />
 
                     <TextView
@@ -203,6 +212,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="06:40 AM"
+                        android:textColor="@color/white"
                         android:textSize="14dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -228,6 +238,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/pressure"
+                        app:tint="@color/white"
                          />
 
 
@@ -235,6 +246,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pressure"
+                        android:textColor="@color/white"
                         android:textSize="12dp" />
 
                     <TextView
@@ -242,6 +254,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="06:40 AM"
+                        android:textColor="@color/white"
                         android:textSize="14dp" />
                 </LinearLayout>
 
@@ -260,6 +273,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/humidity"
+                        app:tint="@color/white"
                         />
 
                      />
@@ -268,10 +282,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Humidity"
+                        android:textColor="@color/white"
                         android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/humidity"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="06:40 AM"
@@ -293,7 +309,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/info"
-                         />
+                        app:tint="@color/white" />
 
 
 
@@ -301,10 +317,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Created By"
+                        android:textColor="@color/white"
                         android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/about"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="SIP Kopi"
