@@ -32,6 +32,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TutorialLoginRegist">
         <activity
+            android:name=".Pencatatan.panen"
+            android:exported="false" />
+        <activity
+            android:name=".Pencatatan.peremajaan"
+            android:exported="false" />
+        <activity
             android:name=".Pencatatan.pembibitan"
             android:exported="false" />
         <activity

@@ -14,8 +14,11 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.TimePicker
 import androidx.fragment.app.Fragment
+import com.rival.tutorialloginregist.Pencatatan.panen
 import com.rival.tutorialloginregist.Pencatatan.panen_add
+import com.rival.tutorialloginregist.Pencatatan.pembibitan
 import com.rival.tutorialloginregist.Pencatatan.pembibitanadd
+import com.rival.tutorialloginregist.Pencatatan.peremajaan
 import com.rival.tutorialloginregist.Pencatatan.peremajaanadd
 
 class SettingFragment : Fragment() {
@@ -36,15 +39,15 @@ class SettingFragment : Fragment() {
 
 
         txPembibitan.setOnClickListener {
-            val intent = Intent(activity, pembibitanadd::class.java)
+            val intent = Intent(activity, pembibitan::class.java)
             startActivity(intent)
         }
         txPerawatan.setOnClickListener {
-            val intent = Intent(activity, peremajaanadd::class.java)
+            val intent = Intent(activity, peremajaan::class.java)
             startActivity(intent)
         }
         txPanen.setOnClickListener {
-            val intent = Intent(activity, panen_add::class.java)
+            val intent = Intent(activity, panen::class.java)
             startActivity(intent)
         }
 

@@ -6,15 +6,15 @@ import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.rival.tutorialloginregist.R
 
-class pembibitan : AppCompatActivity() {
+class peremajaan : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pembibitan)
+        setContentView(R.layout.activity_peremajaan)
 
-        val fab : FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener{
-            val intent = Intent (this, pembibitanadd::class.java)
+        val fab2 :FloatingActionButton = findViewById(R.id.fab_peremajaan)
+        fab2.setOnClickListener {
+            val intent = Intent (this,peremajaanadd::class.java)
             startActivity(intent)
         }
+        }
     }
-}
