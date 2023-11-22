@@ -1,4 +1,4 @@
-package com.rival.tutorialloginregist
+package com.rival.tutorialloginregist.ProfilePage
 
 import android.content.Intent
 import android.net.Uri

@@ -32,6 +32,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TutorialLoginRegist">
         <activity
+            android:name=".ProfilePage.privacypolicy"
+            android:exported="false" />
+        <activity
             android:name=".Pencatatan.panen"
             android:exported="false" />
         <activity
@@ -41,7 +44,7 @@
             android:name=".Pencatatan.pembibitan"
             android:exported="false" />
         <activity
-            android:name=".AboutUs"
+            android:name=".ProfilePage.AboutUs"
             android:exported="false" />
         <activity
             android:name=".Pencatatan.panen_add"
@@ -62,10 +65,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Pengaturan"
+            android:name=".ProfilePage.Pengaturan"
             android:exported="false" />
         <activity
-            android:name=".EditProfile"
+            android:name=".ProfilePage.EditProfile"
             android:exported="false" />
         <activity
             android:name=".WeatherActivity"
@@ -74,7 +77,7 @@
             android:name=".NotifikasiActivity2"
             android:exported="false" />
         <activity
-            android:name=".ContactUs"
+            android:name=".ProfilePage.ContactUs"
             android:exported="false" />
         <activity
             android:name=".NotifikasiActivity"

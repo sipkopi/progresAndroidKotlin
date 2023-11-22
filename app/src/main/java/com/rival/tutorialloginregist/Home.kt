@@ -1,6 +1,7 @@
 package com.rival.tutorialloginregist
 
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +26,9 @@ class Home : Fragment() {
     private lateinit var recyclerViewList: RecyclerView
     private lateinit var textView9: TextView
     private lateinit var textView7: TextView
+    private lateinit var imageView6 : ImageView
     private lateinit var imageView1: ImageView
+    private lateinit var imageView8 : ImageView
     private lateinit var viewPager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,6 +76,8 @@ class Home : Fragment() {
         textView9 = view.findViewById(R.id.textView9)
         textView7 = view.findViewById(R.id.textView7)
         imageView1 = view.findViewById(R.id.imageView1)
+        imageView6 = view.findViewById(R.id.imageView6)
+        imageView8 = view.findViewById(R.id.imageView8)
         textView9.setOnClickListener {
             val intent = Intent(activity, NotifikasiActivity::class.java)
             startActivity(intent)
@@ -83,6 +88,14 @@ class Home : Fragment() {
         }
         textView7.setOnClickListener {
             val intent = Intent(activity, WeatherActivity::class.java)
+            startActivity(intent)
+        }
+        imageView6.setOnClickListener {
+            val intent = Intent(activity, WeatherActivity::class.java)
+            startActivity(intent)
+        }
+        imageView8.setOnClickListener {
+            val intent = Intent(activity, NotifikasiActivity::class.java)
             startActivity(intent)
         }
 

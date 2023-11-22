@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,61 +9,248 @@
     tools:context=".CoffeDetail">
 
     <TextView
+        android:id="@+id/detailTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/detailTitle"
-        android:layout_marginTop="14dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppinssemibold"
         android:text="Title"
-        android:fontFamily="@font/poppinssemibold"
+        android:textColor="@color/black"
         android:textSize="24sp"
-        android:layout_gravity="center"
-        android:textColor="@color/black"
-        android:layout_marginBottom="12dp"/>
-
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:id="@+id/detailImage"
-        android:padding="8dp"
-        android:layout_gravity="center"
-        android:src="@drawable/kopi2"
-        android:scaleType="centerCrop"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Description"
-        android:fontFamily="@font/poppinssemibold"
-        android:padding="20dp"
-        android:layout_gravity="center"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:id="@+id/deskripsi"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Description"
-        android:padding="17dp"
-        android:fontFamily="@font/poppinsregular"
-        android:layout_gravity="center"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:id="@+id/detailDesc"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Menambahkan atribut layout_weight pada elemen Button -->
+
+    <ImageView
+        android:id="@+id/detailImage"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="46dp"
+        android:padding="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/kopi2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailTitle" />
+
+    <TextView
+        android:id="@+id/deskripsi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="267dp"
+        android:fontFamily="@font/poppinssemibold"
+        android:padding="4dp"
+        android:text="Deskripsi"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailImage" />
+
+    <TextView
+        android:id="@+id/detailDeskripsi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppinsregular"
+        android:padding="6dp"
+        android:text="Kopi Ijen Blue Mountain merupakan jenis kopi arabika jawa. Kopi ini cenderung memiliki keasaman yang tinggi, wangi, dan segar."
+        android:textAlignment="textStart"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deskripsi" />
+
+    <TextView
+        android:id="@+id/varietas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/poppinsregular"
+        android:padding="9dp"
+        android:text="Varietas "
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/detailDeskripsi"
+        app:layout_constraintTop_toBottomOf="@+id/detailDeskripsi" />
+
+    <TextView
+        android:id="@+id/detailDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/poppinsregular"
+        android:padding="9dp"
+        android:text=": Description"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/varietas"
+        app:layout_constraintTop_toBottomOf="@+id/detailDeskripsi" />
+
+    <TextView
+        android:id="@+id/petani"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-5dp"
+        android:fontFamily="@font/poppinsregular"
+        android:padding="9dp"
+        android:text="Petani "
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/varietas"
+        app:layout_constraintTop_toBottomOf="@+id/varietas" />
+
+
+    <TextView
+        android:id="@+id/detailPetani"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-5dp"
+        android:fontFamily="@font/poppinsregular"
+        android:padding="9dp"
+        android:text=": Nur Muhammad Fadli"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/detailDesc"
+        app:layout_constraintTop_toBottomOf="@+id/detailDesc" />
+
+    <TextView
+        android:id="@+id/tglpanen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-5dp"
+        android:fontFamily="@font/poppinsregular"
+        android:padding="9dp"
+        android:text="Tgl Panen "
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/petani"
+        app:layout_constraintTop_toBottomOf="@+id/petani" />
+
+    <TextView
+        android:id="@+id/detailTglPanen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-5dp"
+        android:fontFamily="@font/poppinsregular"
+        android:padding="9dp"
+        android:text=": 14/11/2023"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/detailPetani"
+        app:layout_constraintTop_toBottomOf="@+id/detailPetani" />
+
+    <TextView
+        android:id="@+id/tglRoasting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppinsregular"
+        android:padding="9dp"
+        android:text="Tgl Roasting"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/tglpanen"
+        app:layout_constraintTop_toBottomOf="@+id/tglpanen" />
+
+    <TextView
+        android:id="@+id/detailRoasting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/poppinsregular"
+        android:padding="9dp"
+        android:text=": 21/11/2023"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/detailTglPanen"
+        app:layout_constraintTop_toBottomOf="@+id/detailTglPanen" />
+
+    <TextView
+        android:id="@+id/metode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppinsregular"
+        android:padding="9dp"
+        android:text="Pengolahan"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/tglRoasting"
+        app:layout_constraintTop_toBottomOf="@+id/tglRoasting" />
+
+    <TextView
+        android:id="@+id/detailmetode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppinsregular"
+        android:padding="9dp"
+        android:text=": Fullwash"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/detailRoasting"
+        app:layout_constraintTop_toBottomOf="@+id/detailRoasting" />
+    <TextView
+        android:id="@+id/expired"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppinsregular"
+        android:padding="9dp"
+        android:text="Tgl Expired"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/metode"
+        app:layout_constraintTop_toBottomOf="@+id/metode" />
+
+    <TextView
+        android:id="@+id/detailExpired"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppinsregular"
+        android:padding="9dp"
+        android:text=": 25/11/2025"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/detailmetode"
+        app:layout_constraintTop_toBottomOf="@+id/detailmetode" />
+
     <Button
         android:id="@+id/btnLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1"
         android:background="@drawable/button_shape"
         android:text="Lihat Lokasi Tanam"
         android:textColor="@android:color/white"
         app:backgroundTint="@null"
-        android:layout_weight="1" />
-</LinearLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

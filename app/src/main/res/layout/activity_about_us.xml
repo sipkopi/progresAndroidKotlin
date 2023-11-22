@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/aboutus1"
-    tools:context=".AboutUs">
+    tools:context=".ProfilePage.AboutUs">
 
     <TextView
         android:id="@+id/judul"

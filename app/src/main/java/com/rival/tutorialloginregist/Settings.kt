@@ -13,8 +13,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.rival.tutorialloginregist.R
-import com.rival.tutorialloginregist.LoginActivity
+import com.rival.tutorialloginregist.ProfilePage.ContactUs
+import com.rival.tutorialloginregist.ProfilePage.EditProfile
+import com.rival.tutorialloginregist.ProfilePage.Pengaturan
 
 class Settings : Fragment() {
 

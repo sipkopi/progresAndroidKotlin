@@ -1,14 +1,12 @@
-package com.rival.tutorialloginregist
-import android.content.Context
+package com.rival.tutorialloginregist.ProfilePage
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
 import android.widget.TextView // tambahkan import ini
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.rival.tutorialloginregist.R
 
 class EditProfile : AppCompatActivity() {
     private lateinit var mGoogleSignInClient: GoogleSignInClient
