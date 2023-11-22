@@ -16,6 +16,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.rival.tutorialloginregist.laporan.laporanActivity
 import java.util.ArrayList
 
 class Home : Fragment() {
@@ -29,6 +30,7 @@ class Home : Fragment() {
     private lateinit var imageView6 : ImageView
     private lateinit var imageView1: ImageView
     private lateinit var imageView8 : ImageView
+    private lateinit var imageView4: ImageView
     private lateinit var viewPager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,12 +80,17 @@ class Home : Fragment() {
         imageView1 = view.findViewById(R.id.imageView1)
         imageView6 = view.findViewById(R.id.imageView6)
         imageView8 = view.findViewById(R.id.imageView8)
+        imageView4 = view.findViewById(R.id.imageView4)
         textView9.setOnClickListener {
             val intent = Intent(activity, NotifikasiActivity::class.java)
             startActivity(intent)
         }
         imageView1.setOnClickListener {
             val intent = Intent(activity, NotifikasiActivity2::class.java)
+            startActivity(intent)
+        }
+        imageView4.setOnClickListener {
+            val intent = Intent(activity, laporanActivity::class.java)
             startActivity(intent)
         }
         textView7.setOnClickListener {

@@ -1,8 +1,8 @@
-package com.rival.tutorialloginregist.Pencatatan
+package com.rival.tutorialloginregist.laporan
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -10,33 +10,29 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.rival.tutorialloginregist.R
 import com.rival.tutorialloginregist.Pencatatan.pembibitanAdapter
-import com.rival.tutorialloginregist.Pencatatan.lahanModel
+import com.rival.tutorialloginregist.R
+import com.rival.tutorialloginregist.laporan.laporanModel
+import com.rival.tutorialloginregist.laporan.laporanAdapter
 
-class pembibitan : AppCompatActivity() {
+class laporanActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var pembibitanAdapter: pembibitanAdapter
+    private lateinit var laporanAdapter: laporanAdapter
     private lateinit var dataQueue: RequestQueue
+    private lateinit var jumlahHariTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pembibitan)
+        setContentView(R.layout.activity_laporan)
 
-        recyclerView = findViewById(R.id.rv_pembibitan)
+        recyclerView = findViewById(R.id.rv_laporan)
+
         recyclerView.layoutManager = LinearLayoutManager(this)
-        pembibitanAdapter = pembibitanAdapter(this, mutableListOf())
-        recyclerView.adapter = pembibitanAdapter
+        laporanAdapter = laporanAdapter(this, mutableListOf())
+        recyclerView.adapter = laporanAdapter
 
         dataQueue = Volley.newRequestQueue(this)
         fetchData()
-
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener {
-            val intent = Intent(this, pembibitanadd::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun fetchData() {
@@ -44,10 +40,10 @@ class pembibitan : AppCompatActivity() {
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
             Response.Listener { response ->
-                val dataList = mutableListOf<lahanModel>()
+                val dataList = mutableListOf<laporanModel>()
                 for (i in 0 until response.length()) {
                     val dataJson = response.getJSONObject(i)
-                    val data = lahanModel(
+                    val data = laporanModel(
                         dataJson.getString("kode_lahan"),
                         dataJson.getString("user"),
                         dataJson.getString("varietas_pohon"),
@@ -56,7 +52,7 @@ class pembibitan : AppCompatActivity() {
                     )
                     dataList.add(data)
                 }
-                pembibitanAdapter.updateData(dataList)
+                laporanAdapter.updateData(dataList)
             },
             Response.ErrorListener { error ->
 

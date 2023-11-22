@@ -5,5 +5,5 @@ data class lahanModel(
     val lokasi_lahan: String,
     val varietas_pohon: String,
     val total_bibit: String,
-
+    val tanggal:String
 )

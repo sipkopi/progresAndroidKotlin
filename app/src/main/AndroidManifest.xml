@@ -32,6 +32,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TutorialLoginRegist">
         <activity
+            android:name=".laporan.laporanActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProfilePage.privacypolicy"
             android:exported="false" />
         <activity

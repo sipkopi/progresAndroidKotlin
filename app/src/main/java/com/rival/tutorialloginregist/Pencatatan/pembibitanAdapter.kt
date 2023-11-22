@@ -16,6 +16,7 @@ class pembibitanAdapter(private val context: Context, private val dataList: Muta
         val lokasiLahanTextView: TextView = itemView.findViewById(R.id.lokasiLahanTextView)
         val jenisTextView: TextView = itemView.findViewById(R.id.jenisTextView)
         val jumlahTextView: TextView = itemView.findViewById(R.id.totalTextView)
+        val tanggalTextView : TextView = itemView.findViewById(R.id.tanggalTanam)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,6 +30,7 @@ class pembibitanAdapter(private val context: Context, private val dataList: Muta
         holder.lokasiLahanTextView.text = data.lokasi_lahan
         holder.jenisTextView.text = data.varietas_pohon
         holder.jumlahTextView.text = data.total_bibit
+        holder.tanggalTextView.text = data.tanggal
     }
 
     fun updateData(newData: List<lahanModel>) {

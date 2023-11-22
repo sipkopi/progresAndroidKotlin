@@ -13,8 +13,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="@drawable/border_bg"
+        android:orientation="vertical"
         android:padding="16dp">
 
 
@@ -64,6 +64,7 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/TglTanam"
             app:layout_constraintTop_toBottomOf="@+id/TglTanam" />
+
         <TextView
             android:id="@+id/tggalTnm"
             android:layout_width="wrap_content"
@@ -74,6 +75,17 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/JmlTanam"
             app:layout_constraintTop_toBottomOf="@+id/JmlTanam" />
+
+        <TextView
+            android:id="@+id/jmlhhari"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Umur Bibit :"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/tggalTnm"
+            app:layout_constraintTop_toBottomOf="@+id/tggalTnm" />
 
         <TextView
             android:id="@+id/kodeLahanTextView"
@@ -131,6 +143,16 @@
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/totalTextView"
             app:layout_constraintTop_toBottomOf="@+id/totalTextView"
+            tools:text="Date" />
+        <TextView
+            android:id="@+id/JumlahHari"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Date"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tanggalTanam"
+            app:layout_constraintTop_toBottomOf="@+id/tanggalTanam"
             tools:text="Date" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

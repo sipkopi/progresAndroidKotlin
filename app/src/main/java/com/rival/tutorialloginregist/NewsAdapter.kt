@@ -18,6 +18,7 @@ class NewsAdapter(private val listDomains: ArrayList<ListDomain>) : RecyclerView
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.feederName.text = listDomains[position].title
 
+
         val drawableResourceId = holder.itemView.context.resources.getIdentifier(listDomains[position].url, "drawable", holder.itemView.context.packageName)
 
         Glide.with(holder.itemView.context)
@@ -32,5 +33,6 @@ class NewsAdapter(private val listDomains: ArrayList<ListDomain>) : RecyclerView
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val feederName: TextView = itemView.findViewById(R.id.feederName)
         val removeItem: ImageView = itemView.findViewById(R.id.removeFeeder)
+
     }
 }
