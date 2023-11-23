@@ -80,9 +80,9 @@ class NotifikasiActivity : AppCompatActivity() {
         val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
 
         AlertDialog.Builder(this)
-            .setTitle("Notification Scheduled")
+            .setTitle("Notifikasi Dijadwalkan")
             .setMessage(
-                "Title: $title\nMessage: $message\nAt: ${dateFormat.format(date)} ${timeFormat.format(date)}"
+                "Judul: $title\nCatatan: $message\nPada: ${dateFormat.format(date)} ${timeFormat.format(date)}"
             )
             .setPositiveButton("Okay") { _, _ -> }
             .show()

@@ -16,7 +16,7 @@ class NotificationAdapter(private val notifications: MutableList<NotificationEnt
         val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
         val messageTextView: TextView = itemView.findViewById(R.id.messageTextView)
         val datetimeTextView: TextView = itemView.findViewById(R.id.datetimeTextView)
-        val deleteItemTextView: TextView = itemView.findViewById(R.id.tvkonfirmasi)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
@@ -33,9 +33,7 @@ class NotificationAdapter(private val notifications: MutableList<NotificationEnt
             notificationItem.time.toString() // Menampilkan tanggal dan waktu
 
         // Menambahkan tindakan penghapusan saat "DeleteItem" ditekan
-        holder.deleteItemTextView.setOnClickListener {
-            onDeleteItemTextViewClick?.invoke(position)
-        }
+
     }
 
     override fun getItemCount(): Int {

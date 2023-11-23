@@ -14,7 +14,7 @@ class AboutUs : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.LinkButton.setOnClickListener{
-            openUrl("https://dtaapi.000webhostapp.com/detail/?kode_kopi=KPK001")
+            openUrl("https://sipkopi.com")
         }
     }
 

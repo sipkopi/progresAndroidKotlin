@@ -93,9 +93,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_api_key" />
 
-        <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
+
 
         <receiver
             android:name=".Notification"
@@ -104,9 +102,7 @@
             android:name=".AlarmReceiver"
             android:enabled="true" />
 
-        <activity
-            android:name=".LupaSandiActivity"
-            android:exported="false" />
+
         <activity
             android:name=".RecyclerView"
             android:exported="false" />
@@ -116,9 +112,7 @@
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true" />
