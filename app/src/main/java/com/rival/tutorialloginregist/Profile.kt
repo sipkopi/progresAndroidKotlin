@@ -23,7 +23,6 @@ class Profile : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Inisialisasi properti imageId, names, dan ingredients
         imageId = arrayOf(
             R.drawable.kopi1,
             R.drawable.kopi2,

@@ -6,7 +6,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="@drawable/border_bg"
     android:elevation="8dp"
     android:padding="16dp"
     app:cardCornerRadius="10dp">
@@ -14,13 +13,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_row"
         android:layout_width="190dp"
-        android:background="@drawable/border_bg"
         android:layout_height="match_parent"
         android:padding="4dp">
 
         <ImageView
             android:id="@+id/removeFeeder"
-            android:layout_width="160dp"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="0dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +47,7 @@
             android:fontFamily="@font/poppinsregular"
             android:maxEms="7"
             android:maxLines="1"
-            android:text="Variety"
+            android:text="Kunjungi Halaman"
             android:textSize="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/feederName"

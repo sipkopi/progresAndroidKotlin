@@ -46,7 +46,7 @@
         android:textSize="18sp"
         android:textColor="@color/primary"
         android:fontFamily="@font/poppinssemibold"
-        android:text="Peremajaan"
+        android:text="Perawatan"
         app:layout_constraintStart_toStartOf="@+id/txPembibitan"
         app:layout_constraintTop_toBottomOf="@+id/txPembibitan" />
     <TextView
@@ -60,4 +60,6 @@
         android:text="Panen"
         app:layout_constraintStart_toStartOf="@+id/txPeremajaan"
         app:layout_constraintTop_toBottomOf="@+id/txPeremajaan" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

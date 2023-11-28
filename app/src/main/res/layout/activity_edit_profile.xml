@@ -31,19 +31,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/NemeeditTextText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
-        android:hint="Name"
+        android:hint="Nama Panggilan"
         android:fontFamily="@font/poppinsregular"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:fontFamily="@font/poppinsregular"
+        android:hint="Name"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/NemeeditTextText"
+        app:layout_constraintStart_toStartOf="@+id/NemeeditTextText"
+        app:layout_constraintTop_toBottomOf="@+id/NemeeditTextText" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
@@ -83,14 +96,14 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
-        android:hint="Address"
+        android:hint="Alamat"
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonSimpan3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"

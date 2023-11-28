@@ -1,11 +1,7 @@
-// NotifikasiActivity.kt
 package com.rival.tutorialloginregist
 
-import android.app.AlarmManager
-import android.app.AlertDialog
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -23,10 +19,12 @@ class NotifikasiActivity : AppCompatActivity() {
         binding = ActivityNotifikasiBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Inisialisasi SQLite Database Helper
         dbHelper = NotificationDbHelper(this)
 
-        createNotificationChannel()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createNotificationChannel()
+        }
+
         binding.submitButton.setOnClickListener { scheduleNotification() }
     }
 
@@ -39,6 +37,7 @@ class NotifikasiActivity : AppCompatActivity() {
         }
 
         val intent = Intent(applicationContext, Notification::class.java)
+        intent.action = "com.rival.tutorialloginregist.SHOW_NOTIFICATION"
         intent.putExtra(titleExtra, title)
         intent.putExtra(messageExtra, message)
 
@@ -62,16 +61,14 @@ class NotifikasiActivity : AppCompatActivity() {
                 )
                 showAlert(time, title, message)
             } else {
-
+                // Handle jika perangkat tidak mendukung alarm exact
             }
         } else {
-
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, time, pendingIntent)
             showAlert(time, title, message)
         }
 
         dbHelper.insertNotification(title, message, time)
-
     }
 
     private fun showAlert(time: Long, title: String, message: String) {
@@ -80,9 +77,9 @@ class NotifikasiActivity : AppCompatActivity() {
         val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
 
         AlertDialog.Builder(this)
-            .setTitle("Notifikasi Dijadwalkan")
+            .setTitle("Notification Scheduled")
             .setMessage(
-                "Judul: $title\nCatatan: $message\nPada: ${dateFormat.format(date)} ${timeFormat.format(date)}"
+                "Title: $title\nMessage: $message\nAt: ${dateFormat.format(date)} ${timeFormat.format(date)}"
             )
             .setPositiveButton("Okay") { _, _ -> }
             .show()

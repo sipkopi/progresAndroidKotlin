@@ -1,6 +1,7 @@
 package com.rival.tutorialloginregist
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -89,7 +90,10 @@ class Settings : Fragment() {
                 // Logout jika user memilih "Ya"
                 mAuth.signOut()
                 mGoogleSignInClient.signOut().addOnCompleteListener(requireActivity()) {
-                    // Optional: Update UI or show a message to the user
+                    // Hapus data dari Shared Preferences
+                    clearDataFromSharedPreferences()
+
+                    // Pindah ke aktivitas login
                     val intent = Intent(requireActivity(), MainActivity::class.java)
                     startActivity(intent)
                     requireActivity().finish()
@@ -99,6 +103,14 @@ class Settings : Fragment() {
                 dialog.dismiss()
             }
             .show()
+    }
+
+    private fun clearDataFromSharedPreferences() {
+        val sharedPreferences =
+            requireActivity().getSharedPreferences("UserProfile", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
     }
 
 }

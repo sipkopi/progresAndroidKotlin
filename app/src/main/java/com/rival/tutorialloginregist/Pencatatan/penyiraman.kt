@@ -1,32 +1,25 @@
 package com.rival.tutorialloginregist.Pencatatan
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import com.android.volley.Response
+import com.android.volley.toolbox.Volley
 import com.rival.tutorialloginregist.R
+import org.json.JSONObject
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [penyiraman.newInstance] factory method to
- * create an instance of this fragment.
- */
 class penyiraman : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+
         }
     }
 
@@ -34,27 +27,49 @@ class penyiraman : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_penyiraman, container, false)
+        val view = inflater.inflate(R.layout.fragment_penyiraman, container, false)
+
+        val buttonSubmit = view.findViewById<Button>(R.id.button2)
+        buttonSubmit.setOnClickListener {
+            // Panggil metode untuk mengirim data pemupukan
+            sendPemupukanData()
+        }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment penyiraman.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            penyiraman().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun sendPemupukanData() {
+        val url = "https://sipkopi.com/api/peremajaan/tambahv1.php"
+        val kodeLahan = view?.findViewById<EditText>(R.id.editTextText2)
+        val Perlakuan = view?.findViewById<EditText>(R.id.editTextText8)
+        val Tanggal = view?.findViewById<EditText>(R.id.editTextDate)
+        val Kebutuhan = view?.findViewById<EditText>(R.id.editTextNumber2)
+
+
+
+        val params = JSONObject()
+        params.put("kode_lahan", kodeLahan?.text.toString())
+        params.put("perlakuan", Perlakuan?.text.toString())
+        params.put("tanggal", Tanggal?.text.toString())
+        params.put("kebutuhan", Kebutuhan?.text.toString())
+
+
+
+        val request = MyVolleyRequest(requireContext())
+
+        val successListener = Response.Listener<JSONObject> { response ->
+            // Handle the response
+            // Misalnya, dapatkan data dari objek JSON
+            val result = response.getString("result")
+            // Lakukan sesuatu dengan hasil
+            Toast.makeText(requireContext(), "Data pemupukan terkirim: $result", Toast.LENGTH_SHORT).show()
+        }
+
+        val errorListener = Response.ErrorListener { error ->
+            Log.e(MyVolleyRequest.TAG, "Error sending pemupukan data", error)
+        }
+
+
+        request.postRequest(url, params, successListener, errorListener)
     }
 }

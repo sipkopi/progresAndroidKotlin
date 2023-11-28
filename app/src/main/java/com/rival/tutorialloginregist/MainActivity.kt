@@ -10,6 +10,9 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -17,6 +20,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.rival.tutorialloginregist.databinding.ActivityMainBinding
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
@@ -93,7 +97,15 @@ class MainActivity : AppCompatActivity() {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)
-                firebaseAuthWithGoogle(account.idToken!!)
+                // Periksa apakah user telah login sebelumnya
+                if (auth.currentUser == null) {
+                    // User belum login, lakukan autentikasi
+                    firebaseAuthWithGoogle(account.idToken!!)
+                } else {
+                    // User sudah login sebelumnya, lanjutkan ke HomeActivity
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    finish()
+                }
             } catch (e: ApiException) {
                 Toast.makeText(this, "Google sign in failed: ${e.message}", Toast.LENGTH_SHORT).show()
             }
@@ -108,13 +120,46 @@ class MainActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     Toast.makeText(this, "Signed in as ${user?.displayName}", Toast.LENGTH_SHORT)
                         .show()
+                    checkEmailOnAPI(user?.email)
                     startActivity(Intent(this, HomeActivity::class.java))
                     finish()
+
                 } else {
                     Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
                 }
             }
     }
+    private fun checkEmailOnAPI(email: String?) {
+        val url = "https://sipkopi.com/api/user/datauser.php"
+
+        val params = hashMapOf<String, String>()
+        params["email"] = email.orEmpty()
+
+        val request = JsonObjectRequest(
+            Request.Method.POST, url, JSONObject(params.toMap()),
+            { response ->
+                // Handle response dari API
+                val isEmailRegistered = response.getBoolean("is_email_registered")
+
+                if (isEmailRegistered) {
+                    // Email terdaftar, lakukan sesuai dengan kebutuhan aplikasi Anda
+                    // Contoh: Tampilkan pesan atau navigasi ke halaman berikutnya
+                    Toast.makeText(this, "Email sudah terdaftar", Toast.LENGTH_SHORT).show()
+                } else {
+                    // Email belum terdaftar, lakukan sesuai dengan kebutuhan aplikasi Anda
+                    // Contoh: Lanjutkan proses login atau tampilkan pesan
+                    Toast.makeText(this, "Email belum terdaftar", Toast.LENGTH_SHORT).show()
+                }
+            },
+            { error ->
+                // Handle error dari API
+                Toast.makeText(this, "Error checking email on API: ${error.message}", Toast.LENGTH_SHORT).show()
+            })
+
+        // Tambahkan request ke queue Volley
+        Volley.newRequestQueue(this).add(request)
+    }
+
 
     private fun login(username: String, password: String): Boolean {
         val db = dbHelper.readableDatabase
@@ -126,6 +171,7 @@ class MainActivity : AppCompatActivity() {
         cursor.close()
         return count > 0
     }
+
 
     companion object {
         private const val RC_SIGN_IN = 9001
