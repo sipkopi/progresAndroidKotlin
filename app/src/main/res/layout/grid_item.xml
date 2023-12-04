@@ -12,7 +12,7 @@
     app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_row"
+        android:id="@+id/constraint_row2"
         android:layout_width="176dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/primary"

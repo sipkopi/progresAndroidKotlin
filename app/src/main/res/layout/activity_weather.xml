@@ -137,7 +137,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sunrise"
+                        android:text="Terbit"
                         android:textColor="@color/white"
                         android:textSize="12dp" />
 
@@ -170,7 +170,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sunset"
+                        android:text="Terbenan"
                         android:textColor="@color/white"
                         android:textSize="12dp" />
 
@@ -203,7 +203,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Wind"
+                        android:text="Angin"
                         android:textColor="@color/white"
                         android:textSize="12dp" />
 
@@ -245,7 +245,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pressure"
+                        android:text="Tekanan"
                         android:textColor="@color/white"
                         android:textSize="12dp" />
 
@@ -281,7 +281,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Humidity"
+                        android:text="Kelembapan"
                         android:textColor="@color/white"
                         android:textSize="12dp" />
 
@@ -316,7 +316,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Created By"
+                        android:text="Dibuat Oleh"
                         android:textColor="@color/white"
                         android:textSize="12dp" />
 

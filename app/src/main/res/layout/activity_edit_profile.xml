@@ -5,7 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfilePage.EditProfile">
-
+    <ScrollView
+        android:id="@+id/scrollView4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <ImageView
         android:id="@+id/imageView29"
         android:layout_width="30dp"
@@ -21,9 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:text="Edit Profile"
-        android:fontFamily="@font/poppinsbold"
-        android:textColor="@color/black"
+        android:text="Informasi Akun"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.372"
@@ -31,89 +40,171 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/NemeeditTextText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="24dp"
-        android:ems="10"
-        android:hint="Nama Panggilan"
-        android:fontFamily="@font/poppinsregular"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-    <EditText
         android:id="@+id/editTextText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:ems="10"
-        android:fontFamily="@font/poppinsregular"
-        android:hint="Name"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="@+id/NemeeditTextText"
-        app:layout_constraintStart_toStartOf="@+id/NemeeditTextText"
-        app:layout_constraintTop_toBottomOf="@+id/NemeeditTextText" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView58" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
-        android:fontFamily="@font/poppinsregular"
-        android:hint="Email"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/textView61" />
 
     <EditText
         android:id="@+id/editTextPhone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
-        android:hint="No Hp"
-        android:fontFamily="@font/poppinsregular"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/textView59" />
 
     <EditText
         android:id="@+id/editTextTextPostalAddress"
         android:layout_width="0dp"
-        android:fontFamily="@font/poppinsregular"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
-        android:hint="Alamat"
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/textView60" />
 
     <Button
         android:id="@+id/buttonSimpan3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="228dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="35dp"
-        android:backgroundTint="@color/primary"
+      android:background="@drawable/button_shape"
         android:text="Simpan"
-        android:background="@drawable/button_shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPostalAddress" />
+
+
+    <ImageView
+        android:id="@+id/imgFoto"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="155dp"
+        android:background="@color/grey"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="156dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+    <Button
+        android:id="@+id/btnUnggah"
+        android:layout_width="77dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="120dp"
+        android:text="pilih"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.586"
+        app:layout_constraintStart_toEndOf="@+id/imgFoto"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView58"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Nama Panggilan"
+        android:fontFamily="@font/poppinssemibold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgFoto" />
+
+    <TextView
+        android:id="@+id/textView59"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Email"
+        android:fontFamily="@font/poppinssemibold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText11" />
+
+    <TextView
+        android:id="@+id/textView60"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="No Hp"
+        android:fontFamily="@font/poppinssemibold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+
+    <TextView
+        android:id="@+id/textView61"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Alamat"
+        android:fontFamily="@font/poppinssemibold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+
+    <EditText
+        android:id="@+id/editTextText11"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView62" />
+
+    <TextView
+        android:id="@+id/textView62"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Nama"
+        android:fontFamily="@font/poppinssemibold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

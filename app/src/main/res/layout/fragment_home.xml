@@ -181,7 +181,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="13dp"
             android:background="@drawable/grey_background"
-            android:elevation="6dp"
+            android:elevation="5dp"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -260,9 +260,9 @@
                     <ImageView
                         android:id="@+id/imageView8"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:layout_marginTop="8dp"
-                        app:srcCompat="@drawable/iconpenjadwalan" />
+                        android:layout_height="60dp"
+                        android:layout_marginTop="19dp"
+                        app:srcCompat="@drawable/jadwal" />
 
                     <TextView
                         android:id="@+id/textView9"

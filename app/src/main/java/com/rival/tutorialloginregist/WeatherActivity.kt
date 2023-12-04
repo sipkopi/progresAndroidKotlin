@@ -6,6 +6,9 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
@@ -25,39 +28,66 @@ class WeatherActivity : AppCompatActivity() {
 
     val CITY: String = "bondowoso"
     val API: String = "cfcd8b7a6440333b004c5233853ecbb0" // Use API key
-
+    private lateinit var locationManager: LocationManager
     val notificationHour: Int = 21
     val notificationMinute: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather)
+        locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-        weatherTask().execute()
+        // Memulai pembaruan lokasi
+        updateLocation()
+
 
     }
+    private fun updateLocation() {
+        try {
+            // Cek izin lokasi
+            if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                // Mendapatkan lokasi terkini
+                locationManager.requestLocationUpdates(
+                    LocationManager.GPS_PROVIDER,
+                    0,
+                    0f,
+                    object : LocationListener {
+                        override fun onLocationChanged(location: Location) {
+                            // Memperbarui data cuaca dengan lokasi terkini
+                            val lat = location.latitude
+                            val lon = location.longitude
+                            val weatherApiUrl =
+                                "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&units=metric&appid=$API"
+                            weatherTask().execute(weatherApiUrl)
 
-    inner class weatherTask() : AsyncTask<String, Void, String>() {
-        override fun onPreExecute() {
-            super.onPreExecute()
-            /* Showing the ProgressBar, Making the main design GONE */
-            findViewById<ProgressBar>(R.id.loader).visibility = View.VISIBLE
-            findViewById<RelativeLayout>(R.id.mainContainer).visibility = View.GONE
-            findViewById<TextView>(R.id.errorText).visibility = View.GONE
+                            // Menghentikan pembaruan lokasi setelah mendapatkan lokasi
+                            locationManager.removeUpdates(this)
+                        }
+
+                        override fun onStatusChanged(
+                            provider: String?,
+                            status: Int,
+                            extras: Bundle?
+                        ) {
+                        }
+                    })
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
+    }
 
+    inner class weatherTask : AsyncTask<String, Void, String>() {
         override fun doInBackground(vararg params: String?): String? {
             var response: String?
             try {
-                response =
-                    URL("https://api.openweathermap.org/data/2.5/weather?q=$CITY&units=metric&appid=$API").readText(
-                        Charsets.UTF_8
-                    )
+                response = URL(params[0]).readText(Charsets.UTF_8)
             } catch (e: Exception) {
                 response = null
             }
             return response
         }
+
 
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
@@ -71,7 +101,7 @@ class WeatherActivity : AppCompatActivity() {
 
                 val updatedAt: Long = jsonObj.getLong("dt")
                 val updatedAtText =
-                    "Updated at: " + SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(
+                    "Diperbarui: " + SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(
                         Date(updatedAt * 1000)
                     )
                 val temp = String.format(Locale.ENGLISH, "%.0f°C", main.getDouble("temp"))
@@ -83,7 +113,16 @@ class WeatherActivity : AppCompatActivity() {
                 val sunrise: Long = sys.getLong("sunrise")
                 val sunset: Long = sys.getLong("sunset")
                 val windSpeed = wind.getString("speed")
-                val weatherDescription = weather.getString("description")
+                val weatherDescription = when (weather.getString("description")) {
+                    "clear sky" -> "cerah"
+                    "few clouds" -> "sedikit berawan"
+                    "scattered clouds" -> "berawan"
+                    "broken clouds" -> "berawan mendung"
+                    "overcast clouds" -> "berawan tebal"
+                    "shower rain" -> "hujan deras"
+                    "light rain" -> "Hujan Ringan"
+                    else -> weather.getString("description")
+                }
 
                 val address = jsonObj.getString("name") + ", " + sys.getString("country")
 
@@ -108,15 +147,13 @@ class WeatherActivity : AppCompatActivity() {
                 val calendar = Calendar.getInstance()
                 val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
                 val currentMinute = calendar.get(Calendar.MINUTE)
-
+                updateLocation()
                 if (currentHour == notificationHour && currentMinute == notificationMinute) {
                     // Panggil metode untuk menjadwalkan alarm sebagai notifikasi
                     scheduleAlarm(temp, address)
                 }
 
             } catch (e: Exception) {
-                findViewById<ProgressBar>(R.id.loader).visibility = View.GONE
-                findViewById<TextView>(R.id.errorText).visibility = View.VISIBLE
             }
 
         }

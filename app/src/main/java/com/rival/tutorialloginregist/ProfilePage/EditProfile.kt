@@ -1,9 +1,13 @@
 package com.rival.tutorialloginregist.ProfilePage
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +22,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.rival.tutorialloginregist.Pencatatan.MyVolleyRequest
 import com.rival.tutorialloginregist.R
 import org.json.JSONObject
+import java.io.File
+import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -30,6 +36,8 @@ class EditProfile : AppCompatActivity() {
     private lateinit var textViewNoHp: TextView
     private lateinit var textViewpPanggilan: TextView
     private lateinit var textViewpAlamat: TextView
+    private lateinit var btnUnggah: Button
+    private lateinit var imgFoto: ImageView
 
     private val sharedPreferencesFileName = "UserProfile"
     private val sharedPreferencesKeyUserName = "UserName"
@@ -37,6 +45,8 @@ class EditProfile : AppCompatActivity() {
     private val sharedPreferencesKeyUserPhoneNumber = "UserPhoneNumber"
     private val sharedPreferencesKeyPanggilan = "Panggilan"
     private val sharedPreferencesKeyAlamat = "Alamat"
+    private val PICK_IMAGE_REQUEST = 2
+    private val sharedPreferencesKeyUserFoto = "UserFoto"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,11 +60,17 @@ class EditProfile : AppCompatActivity() {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        textViewNama = findViewById(R.id.editTextText)
-        textViewEmail = findViewById(R.id.editTextTextEmailAddress)
-        textViewNoHp = findViewById(R.id.editTextPhone)
-        textViewpPanggilan = findViewById(R.id.NemeeditTextText)
-        textViewpAlamat = findViewById(R.id.editTextTextPostalAddress)
+        textViewNama = findViewById(R.id.editTextText11)
+        textViewEmail = findViewById(R.id.editTextPhone)
+        textViewNoHp = findViewById(R.id.editTextTextPostalAddress)
+        textViewpPanggilan = findViewById(R.id.editTextText)
+        textViewpAlamat = findViewById(R.id.editTextTextEmailAddress)
+        btnUnggah = findViewById(R.id.btnUnggah)
+        imgFoto = findViewById(R.id.imgFoto)
+
+        btnUnggah.setOnClickListener {
+            pickImageFromGallery()
+        }
 
         val buttonSaveProfile = findViewById<Button>(R.id.buttonSimpan3)
         buttonSaveProfile.setOnClickListener {
@@ -95,13 +111,15 @@ class EditProfile : AppCompatActivity() {
             // Handle when the user is not logged in
         }
     }
+
     override fun onResume() {
         super.onResume()
         loadUserProfileFromSharedPreferences()
+        loadImageFromInternalStorage()  // Panggil fungsi untuk memuat gambar dari penyimpanan internal
     }
-
     private fun loadUserProfileFromSharedPreferences() {
-        val sharedPreferences = getSharedPreferences(sharedPreferencesFileName, Context.MODE_PRIVATE)
+        val sharedPreferences =
+            getSharedPreferences(sharedPreferencesFileName, Context.MODE_PRIVATE)
         val userName = sharedPreferences.getString(sharedPreferencesKeyUserName, "")
         val userEmail = sharedPreferences.getString(sharedPreferencesKeyUserEmail, "")
         val userPhoneNumber = sharedPreferences.getString(sharedPreferencesKeyUserPhoneNumber, "")
@@ -114,6 +132,7 @@ class EditProfile : AppCompatActivity() {
         textViewpPanggilan.text = panggilan
         textViewpAlamat.text = alamat
     }
+
     fun getCurrentDateTime(): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         return sdf.format(Date())
@@ -148,10 +167,17 @@ class EditProfile : AppCompatActivity() {
             val request = JsonObjectRequest(Request.Method.POST, url, params,
                 Response.Listener { response ->
                     val result = response.getString("message")
-                    Toast.makeText(this, "Data Profile terkirim: $result", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Data Profile terkirim: $result", Toast.LENGTH_SHORT)
+                        .show()
 
                     // Menyimpan data ke SharedPreferences setelah berhasil terkirim
-                    saveDataToSharedPreferences(userName, userEmail, userPhoneNumber, panggilan, alamat)
+                    saveDataToSharedPreferences(
+                        userName,
+                        userEmail,
+                        userPhoneNumber,
+                        panggilan,
+                        alamat
+                    )
                 },
                 Response.ErrorListener { error ->
                     Log.e(MyVolleyRequest.TAG, "Error sending simpan data", error)
@@ -173,7 +199,8 @@ class EditProfile : AppCompatActivity() {
         alamat: String
     ) {
         // Menyimpan data ke SharedPreferences
-        val sharedPreferences = getSharedPreferences(sharedPreferencesFileName, Context.MODE_PRIVATE)
+        val sharedPreferences =
+            getSharedPreferences(sharedPreferencesFileName, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString(sharedPreferencesKeyUserName, userName)
         editor.putString(sharedPreferencesKeyUserEmail, userEmail)
@@ -181,5 +208,61 @@ class EditProfile : AppCompatActivity() {
         editor.putString(sharedPreferencesKeyPanggilan, panggilan)
         editor.putString(sharedPreferencesKeyAlamat, alamat)
         editor.apply()
+    }
+
+    private fun pickImageFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
+            val selectedImageUri = data.data
+            // Setel gambar yang dipilih ke ImageView
+            imgFoto.setImageURI(selectedImageUri)
+
+            saveImageToInternalStorage(selectedImageUri)
+        }
+    }
+
+    private fun saveImageToInternalStorage(selectedImageUri: Uri?) {
+        if (selectedImageUri != null) {
+            val inputStream = contentResolver.openInputStream(selectedImageUri)
+            val file = File(filesDir, "profile_image.jpg")
+            val outputStream = FileOutputStream(file)
+            inputStream?.copyTo(outputStream)
+            inputStream?.close()
+            outputStream.close()
+
+            // Simpan path file ke SharedPreferences
+            saveImagePathToSharedPreferences(file.absolutePath)
+        } else {
+            // Handle ketika selectedImageUri null
+            Log.e("EditProfile", "selectedImageUri is null")
+        }
+    }
+
+
+    private fun saveImagePathToSharedPreferences(imagePath: String) {
+        val sharedPreferences = getSharedPreferences(sharedPreferencesFileName, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString(sharedPreferencesKeyUserFoto, imagePath)
+        editor.apply()
+    }
+
+    private fun loadImageFromInternalStorage() {
+        val sharedPreferences =
+            getSharedPreferences(sharedPreferencesFileName, Context.MODE_PRIVATE)
+        val imagePath = sharedPreferences.getString(sharedPreferencesKeyUserFoto, "")
+
+        if (!imagePath.isNullOrBlank()) {
+            val file = File(imagePath)
+            if (file.exists()) {
+                val imageUri = Uri.fromFile(file)
+                imgFoto.setImageURI(imageUri)
+            }
+        }
     }
 }

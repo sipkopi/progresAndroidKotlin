@@ -35,7 +35,7 @@ class ContactAhli : Fragment() {
     }
 
     private fun sendMessage(messageTxt: String) {
-        val phone = "+6288803716911" // Ganti dengan nomor telepon penerima
+        val phone = "+6287722211979"
 
         val intent = Intent(Intent.ACTION_VIEW)
         val url = "https://api.whatsapp.com/send?phone=$phone&text=$messageTxt"

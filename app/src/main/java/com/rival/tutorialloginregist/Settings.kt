@@ -84,8 +84,8 @@ class Settings : Fragment() {
 
     private fun signOutAndStartSignInActivity() {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Konfirmasi Logout")
-            .setMessage("Apakah Anda Yakin Ingin Logout?")
+        builder.setTitle("Konfirmasi Keluar")
+            .setMessage("Apakah Anda Yakin Ingin Keluar?")
             .setPositiveButton("Ya") { _, _ ->
                 // Logout jika user memilih "Ya"
                 mAuth.signOut()

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
@@ -41,7 +42,8 @@ class pemupukan : Fragment() {
     private fun sendPemupukanData() {
         val url = "https://sipkopi.com/api/peremajaan/tambahv1.php"
         val kodeLahan = view?.findViewById<EditText>(R.id.editTextText2)
-        val Perlakuan = view?.findViewById<EditText>(R.id.editTextText8)
+        val Perlakuan = view?.findViewById<TextView>(R.id.editTextText8)
+
         val Tanggal = view?.findViewById<EditText>(R.id.editTextDate)
         val Kebutuhan = view?.findViewById<EditText>(R.id.editTextNumber2)
         val Pupuk = view?.findViewById<EditText>(R.id.editTextText9)

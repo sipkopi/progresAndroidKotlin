@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Pencatatan.pembibitanadd">
 
+    <ScrollView
+        android:id="@+id/scrollView4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
     <TextView
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
@@ -82,23 +95,54 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText7" />
+        app:layout_constraintTop_toBottomOf="@+id/longLat" />
 
-    <EditText
-        android:id="@+id/editTextText7"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView36" />
+            <EditText
+                android:id="@+id/editTextText7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
-    <TextView
+
+            <TextView
+                android:id="@+id/EdtLongLat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppinssemibold"
+                android:text="Koordinat Lahan"
+                app:layout_constraintStart_toStartOf="@+id/editTextText7"
+                app:layout_constraintTop_toBottomOf="@+id/editTextText7" />
+
+            <EditText
+                android:id="@+id/longLat"
+                android:layout_width="166dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:hint="longtitude"
+                app:layout_constraintStart_toStartOf="@+id/editTextText7"
+                app:layout_constraintTop_toBottomOf="@+id/EdtLongLat" />
+
+            <EditText
+                android:id="@+id/edtLat"
+                android:layout_width="166dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="44dp"
+                android:hint="longtitude"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.46"
+                app:layout_constraintStart_toEndOf="@+id/longLat"
+                app:layout_constraintTop_toBottomOf="@+id/editTextText7" />
+
+            <TextView
         android:id="@+id/textView30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -215,6 +259,6 @@
         app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView34" />
-
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

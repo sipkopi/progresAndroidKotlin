@@ -1,8 +1,10 @@
 package com.rival.tutorialloginregist.Pencatatan
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -17,16 +19,20 @@ class peremajaan : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var pembibitanAdapter: PeremajaanAdapter
     private lateinit var dataQueue: RequestQueue
+    private val sharedPreferencesFileName = "UserProfile"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_peremajaan)
         recyclerView = findViewById(R.id.rv_peremajaan)
+
+        val panggilan = loadUserProfileFromSharedPreferences(this)
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         pembibitanAdapter = PeremajaanAdapter(  this, mutableListOf())
         recyclerView.adapter = pembibitanAdapter
 
         dataQueue = Volley.newRequestQueue(this)
-        fetchData()
+        fetchData(panggilan)
 
         val fab2 :FloatingActionButton = findViewById(R.id.fab_peremajaan)
         fab2.setOnClickListener {
@@ -34,8 +40,17 @@ class peremajaan : AppCompatActivity() {
             startActivity(intent)
         }
         }
-    private fun fetchData() {
-        val url = "https://sipkopi.com/api/peremajaan/peremajaan.php"
+    private fun loadUserProfileFromSharedPreferences(context: Context): String {
+        val sharedPreferences = context.getSharedPreferences(sharedPreferencesFileName, Context.MODE_PRIVATE)
+        val panggilan = sharedPreferences.getString("Panggilan", "")
+
+        Log.d("peremajaan", "Panggilan from SharedPreferences: $panggilan")
+
+        return panggilan.orEmpty()
+    }
+    private fun fetchData(sharedPreferencesKeyPanggilan: String) {
+        val url = "https://sipkopi.com/api/peremajaan/getperemajaan.php?user=$sharedPreferencesKeyPanggilan"
+        Log.d("peremajaan", "API Request URL: $url")
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
             Response.Listener { response ->

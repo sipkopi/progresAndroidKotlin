@@ -5,8 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".CoffeDetail">
+
+    <ScrollView
+        android:id="@+id/scrollView4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
     <TextView
         android:id="@+id/detailTitle"
@@ -33,6 +45,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="46dp"
         android:padding="8dp"
+        android:background="@drawable/border_bg"
         android:scaleType="centerCrop"
         android:src="@drawable/kopi2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,14 +75,11 @@
         android:id="@+id/detailDeskripsi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:fontFamily="@font/poppinsregular"
         android:padding="6dp"
         android:text="Kopi Ijen Blue Mountain merupakan jenis kopi arabika jawa. Kopi ini cenderung memiliki keasaman yang tinggi, wangi, dan segar."
-        android:textAlignment="textStart"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/deskripsi"
         app:layout_constraintTop_toBottomOf="@+id/deskripsi" />
 
     <TextView
@@ -81,7 +91,7 @@
         android:layout_marginTop="4dp"
         android:fontFamily="@font/poppinsregular"
         android:padding="9dp"
-        android:text="Varietas "
+        android:text="Pengolahan "
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/detailDeskripsi"
@@ -125,7 +135,7 @@
         android:layout_marginTop="-5dp"
         android:fontFamily="@font/poppinsregular"
         android:padding="9dp"
-        android:text=": Nur Muhammad Fadli"
+        android:text="akufadli"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/detailDesc"
@@ -193,7 +203,7 @@
         android:layout_gravity="center"
         android:fontFamily="@font/poppinsregular"
         android:padding="9dp"
-        android:text="Pengolahan"
+        android:text="Tgl Expired"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/tglRoasting"
@@ -218,7 +228,7 @@
         android:layout_gravity="center"
         android:fontFamily="@font/poppinsregular"
         android:padding="9dp"
-        android:text="Tgl Expired"
+        android:text="Link "
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/metode"
@@ -226,7 +236,7 @@
 
     <TextView
         android:id="@+id/detailExpired"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/poppinsregular"
@@ -237,20 +247,36 @@
         app:layout_constraintStart_toStartOf="@+id/detailmetode"
         app:layout_constraintTop_toBottomOf="@+id/detailmetode" />
 
-    <Button
-        android:id="@+id/btnLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="1"
-        android:background="@drawable/button_shape"
-        android:text="Lihat Lokasi Tanam"
-        android:textColor="@android:color/white"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/copyText"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-5dp"
+                android:fontFamily="@font/poppinsbold"
+                android:padding="9dp"
+                android:text="Salin Link"
+                android:textColor="@color/primary"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/detailExpired"
+                app:layout_constraintTop_toBottomOf="@+id/detailExpired" />
+            <Button
+                android:id="@+id/btnLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_shape"
+                android:text="Lihat Lokasi Tanam"
+                android:textColor="@android:color/white"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/copyText" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

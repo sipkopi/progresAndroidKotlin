@@ -1,5 +1,7 @@
 package com.rival.tutorialloginregist
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,17 +13,19 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.rival.tutorialloginregist.coffe
+import com.bumptech.glide.Glide
 
-class RecAadapter(private val coffeList: ArrayList<coffe>) : RecyclerView.Adapter<RecAadapter.ViewHolder>(), Filterable {
+class RecAadapter(private val coffeeList: ArrayList<coffe>) : RecyclerView.Adapter<RecAadapter.ViewHolder>(), Filterable {
 
-    private var coffeListFiltered: ArrayList<coffe> = coffeList.toMutableList() as ArrayList<coffe>
+    private var coffeeListFiltered: ArrayList<coffe> = ArrayList(coffeeList) // Inisialisasi dengan copy dari coffeeList
+    private lateinit var context: Context
+
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgTitle: ImageView = itemView.findViewById(R.id.imgTitle)
         val tvName: TextView = itemView.findViewById(R.id.tvName)
         val tvIng: TextView = itemView.findViewById(R.id.tvIng)
-        val constraint_row: ConstraintLayout = itemView.findViewById(R.id.constraint_row)
+        val constraintRow: ConstraintLayout = itemView.findViewById(R.id.constraint_row2)
         val cardView: CardView = itemView.findViewById(R.id.cardView)
     }
 
@@ -37,27 +41,31 @@ class RecAadapter(private val coffeList: ArrayList<coffe>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = coffeListFiltered[position]
+        Log.d("RecAadapter", "onBindViewHolder called for position $position")
 
-        holder.imgTitle.setImageResource(currentItem.imageTitle)
-        holder.tvName.text = currentItem.name
-        holder.tvIng.text = currentItem.ingredients
+        val currentItem = coffeeListFiltered[position]
 
-        val cont = holder.constraint_row.context
-        holder.constraint_row.setOnClickListener {
+        Glide.with(holder.imgTitle.context)
+            .load(currentItem.gambar1)
+            .into(holder.imgTitle)
+
+        holder.tvName.text = currentItem.varietasKopi
+        holder.tvIng.text = currentItem.metodePengolahan
+
+        holder.constraintRow.setOnClickListener {
             onItemClickListener?.invoke(currentItem)
         }
 
-        holder.constraint_row.setOnLongClickListener(View.OnLongClickListener {
+        holder.constraintRow.setOnLongClickListener {
             // Handle long click event here
-            return@OnLongClickListener true
-        })
+            return@setOnLongClickListener true
+        }
 
         holder.cardView.startAnimation(AnimationUtils.loadAnimation(holder.cardView.context, R.anim.scale_up))
     }
 
     override fun getItemCount(): Int {
-        return coffeListFiltered.size
+        return coffeeListFiltered.size
     }
 
     override fun getFilter(): Filter {
@@ -69,11 +77,11 @@ class RecAadapter(private val coffeList: ArrayList<coffe>) : RecyclerView.Adapte
                 val filteredList = ArrayList<coffe>()
 
                 if (queryString.isNullOrBlank()) {
-                    filteredList.addAll(coffeList)
+                    filteredList.addAll(coffeeList)
                 } else {
-                    for (item in coffeList) {
-                        if (item.name.toLowerCase().contains(queryString) ||
-                            item.ingredients.toLowerCase().contains(queryString)
+                    for (item in coffeeList) {
+                        if (item.varietasKopi.toLowerCase().contains(queryString) ||
+                            item.metodePengolahan.toLowerCase().contains(queryString)
                         ) {
                             filteredList.add(item)
                         }
@@ -85,7 +93,7 @@ class RecAadapter(private val coffeList: ArrayList<coffe>) : RecyclerView.Adapte
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                coffeListFiltered = results?.values as ArrayList<coffe>
+                coffeeListFiltered = results?.values as ArrayList<coffe>
                 notifyDataSetChanged()
             }
         }
