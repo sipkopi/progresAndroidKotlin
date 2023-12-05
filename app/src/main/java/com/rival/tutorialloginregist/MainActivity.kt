@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -27,15 +29,12 @@ import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var usernameEditText: EditText
-    private lateinit var passwordEditText: EditText
-    private lateinit var loginButton: Button
+
+
     private lateinit var gSignInBtn: Button
-    private lateinit var LupaSandiButton: TextView
-    private lateinit var registerButton: TextView
     private val CHECK_EMAIL_REQUEST_CODE = 123
     private lateinit var dbHelper: SQLiteOpenHelper
-
+    private lateinit var imgFoto: ImageView
     // Inisialisasi SessionManager
     private lateinit var sessionManager: SessionManager
     private lateinit var binding: ActivityMainBinding
@@ -216,11 +215,12 @@ private fun checkEmailOnAPI(email: String?) {
         editor.putString("UserPhoneNumber", user.getString("nohp"))
         editor.putString("Panggilan", user.getString("user"))
         editor.putString("Alamat", user.getString("lokasi"))
+        editor.putString("gambar", user.getString("gambar"))
+
 
         // Terapkan perubahan
         editor.apply()
     }
-
 
 
     private fun login(username: String, password: String): Boolean {
