@@ -1,5 +1,6 @@
 package com.rival.tutorialloginregist.Pencatatan
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,7 @@ import com.google.android.gms.location.LocationServices
 import com.rival.tutorialloginregist.R
 import org.json.JSONObject
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.jar.Manifest
@@ -33,8 +35,10 @@ class pembibitanadd : AppCompatActivity() {
     private lateinit var textViewTanggal: TextView
     private lateinit var textViewKetinggian: TextView
     private lateinit var textViewLat: TextView
+    private lateinit var buttonDatePicker: Button
+    private val calendar = Calendar.getInstance()
     private lateinit var textViewLokasi: TextView
-    private lateinit var textViewLong: TextView
+
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var editTextLatLong: TextView
     private lateinit var editTextLong : TextView
@@ -90,7 +94,31 @@ class pembibitanadd : AppCompatActivity() {
         buttonSaveProfile2.setOnClickListener {
             saveUserProfileToServer()
         }
+        buttonDatePicker = findViewById(R.id.buttonDatePicker)
 
+        buttonDatePicker.setOnClickListener {
+            showDatePicker()
+        }
+    }
+    private fun showDatePicker() {
+        val datePickerDialog = DatePickerDialog(
+            this,
+            DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                // Ketika tanggal dipilih, simpan nilai tanggal ke dalam EditText
+                calendar.set(year, month, dayOfMonth)
+                updateDateInView()
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+        datePickerDialog.show()
+    }
+
+    private fun updateDateInView() {
+        val myFormat = "yyyy-MM-dd" // Format tanggal yang diinginkan
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        textViewTanggal.setText(sdf.format(calendar.time))
     }
     private fun requestLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(

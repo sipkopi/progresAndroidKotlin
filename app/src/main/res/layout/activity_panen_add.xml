@@ -19,8 +19,8 @@
                 android:id="@+id/textView24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="112dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="144dp"
                 android:fontFamily="@font/poppinsbold"
                 android:text="Tambahkan Produk"
                 android:textSize="18sp"
@@ -43,107 +43,151 @@
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Upload Foto"
+                android:layout_marginTop="36dp"
                 android:fontFamily="@font/poppinssemibold"
+                android:text="Unggah Gambar"
+                android:textSize="11dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.042"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.346"
+                app:layout_constraintStart_toEndOf="@+id/imageView30"
                 app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+            <Button
+                android:id="@+id/pilihgambar2"
+                android:layout_width="88dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/button_shape"
+                android:text="Pilih"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.272"
+                app:layout_constraintStart_toEndOf="@+id/imageView30"
+                app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
             <ImageView
                 android:id="@+id/imageView30"
-                android:layout_width="367dp"
+                android:layout_width="169dp"
                 android:layout_height="169dp"
                 android:layout_marginStart="100dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="36dp"
                 android:layout_marginEnd="100dp"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView25"
+                app:layout_constraintTop_toBottomOf="@+id/textView24"
                 app:srcCompat="@color/grey" />
 
             <Spinner
                 android:id="@+id/Mtd_pengolahan"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="287dp"
+                android:layout_height="38dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.007"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
             <Spinner
                 android:id="@+id/Weight"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="287dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.013"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
             <EditText
                 android:id="@+id/editTextDate2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="294dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:inputType="date"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.012"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView39" />
 
             <EditText
                 android:id="@+id/editTextDate3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="294dp"
+                android:layout_height="45dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:inputType="date"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
             <EditText
                 android:id="@+id/editTextDate4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="294dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:inputType="date"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView41" />
 
-            <Spinner
-                android:id="@+id/Grand_sz"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="16dp"
+
+            <Button
+                android:id="@+id/buttonDatePicker1"
+                android:layout_width="46dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/calender"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView42" />
+                app:layout_constraintHorizontal_bias="0.152"
+                app:layout_constraintStart_toEndOf="@+id/editTextDate2"
+                app:layout_constraintTop_toBottomOf="@+id/Weight" />
+
+            <Button
+                android:id="@+id/buttonDatePicker2"
+                android:layout_width="46dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/calender"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.187"
+                app:layout_constraintStart_toEndOf="@+id/editTextDate3"
+                app:layout_constraintTop_toBottomOf="@+id/buttonDatePicker1" />
+
+            <Button
+                android:id="@+id/buttonDatePicker3"
+                android:layout_width="46dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/calender"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.187"
+                app:layout_constraintStart_toEndOf="@+id/editTextDate4"
+                app:layout_constraintTop_toBottomOf="@+id/buttonDatePicker2" />
+
 
             <Button
                 android:id="@+id/button3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="30dp"
                 android:background="@drawable/button_shape"
                 android:text="Tambahkan"
@@ -176,7 +220,7 @@
                 android:fontFamily="@font/poppinssemibold"
                 android:text="Netto"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.263"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Mtd_pengolahan" />
 
@@ -185,12 +229,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="283dp"
                 android:fontFamily="@font/poppinssemibold"
                 android:text="Tanggal Panen"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.21"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Weight" />
 
@@ -204,7 +248,7 @@
                 android:fontFamily="@font/poppinssemibold"
                 android:text="Tanggal Roasting"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextDate2" />
 
@@ -213,28 +257,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="276dp"
                 android:fontFamily="@font/poppinssemibold"
                 android:text="Tanggal Expired"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.21"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextDate3" />
 
-            <TextView
-                android:id="@+id/textView42"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="313dp"
-                android:fontFamily="@font/poppinssemibold"
-                android:text="Grand Size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.315"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextDate4" />
 
             <TextView
                 android:id="@+id/textView43"
@@ -242,7 +273,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/poppinssemibold"
-                android:text="Kode Lahan"
+                android:text="Kode Peremajaan"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.048"
                 app:layout_constraintStart_toStartOf="parent"
@@ -271,7 +302,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.048"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Grand_sz" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextDate4" />
 
             <EditText
                 android:id="@+id/editTextText6"
@@ -291,7 +322,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Kode Kopi"
+                android:text="Varietas Kopi"
                 android:fontFamily="@font/poppinssemibold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.045"
