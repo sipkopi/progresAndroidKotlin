@@ -3,11 +3,9 @@
     package="com.rival.tutorialloginregist">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -93,16 +91,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_api_key" />
 
-
-
         <receiver
             android:name=".Notification"
             android:enabled="true" />
-        <receiver
-            android:name=".AlarmReceiver"
-            android:enabled="true" />
-
-
         <activity
             android:name=".RecyclerView"
             android:exported="false" />

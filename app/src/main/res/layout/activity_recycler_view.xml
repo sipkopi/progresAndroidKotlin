@@ -7,8 +7,6 @@
     android:padding="10dp"
     tools:context=".MainActivity">
 
-    <!-- SearchView -->
-
     <TextView
         android:id="@+id/judul"
         android:layout_width="wrap_content"

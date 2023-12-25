@@ -25,24 +25,26 @@ class Profile : Fragment() {
     private lateinit var searchView: SearchView
     private lateinit var recView: RecyclerView
     private lateinit var itemArrayList: ArrayList<coffe>
+    private lateinit var originalItemArrayList: ArrayList<coffe>
     private lateinit var adapter: RecAadapter
     private lateinit var dataQueue: RequestQueue
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         dataQueue = Volley.newRequestQueue(requireContext())
         itemArrayList = arrayListOf()
+        originalItemArrayList = arrayListOf()
+        fetchData()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view = inflater.inflate(R.layout.activity_recycler_view, container, false)
-        fetchData()
         initializeUI(view)
+
         return view
     }
 
@@ -59,7 +61,7 @@ class Profile : Fragment() {
 
         adapter.setOnItemClickListener { currentItem ->
             showCoffeeDetailFragment(currentItem)
-      }
+        }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -67,8 +69,8 @@ class Profile : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.filter.filter(newText)
-                return false
+                filterData(newText)
+                return true
             }
         })
     }
@@ -79,11 +81,10 @@ class Profile : Fragment() {
             putString("gambar1", currentItem.gambar1)
             putString("varietas_kopi", currentItem.varietasKopi)
             putString("metode_pengolahan", currentItem.metodePengolahan)
-            putString("tgl_panen",currentItem.tglPanen)
-            putString("tgl_roasting",currentItem.tglRoasting)
-            putString("deskripsi",currentItem.Deskripsi)
-            putString("link",currentItem.Link)
-
+            putString("tgl_panen", currentItem.tglPanen)
+            putString("tgl_roasting", currentItem.tglRoasting)
+            putString("deskripsi", currentItem.Deskripsi)
+            putString("link", currentItem.Link)
         }
         fragmentKopiDetail.arguments = bundle
 
@@ -91,6 +92,25 @@ class Profile : Fragment() {
         transaction.replace(R.id.frame_layout, fragmentKopiDetail)
         transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+    private fun filterData(query: String?) {
+        itemArrayList.clear()
+        if (query.isNullOrEmpty()) {
+            // Jika pencarian kosong, tampilkan data asli
+            itemArrayList.addAll(originalItemArrayList)
+        } else {
+            // Filter data berdasarkan pencarian
+            val searchQuery = query.toLowerCase()
+            for (coffee in originalItemArrayList) {
+                if (coffee.varietasKopi.toLowerCase().contains(searchQuery) ||
+                    coffee.metodePengolahan.toLowerCase().contains(searchQuery)
+                ) {
+                    itemArrayList.add(coffee)
+                }
+            }
+        }
+        adapter.notifyDataSetChanged()
     }
 
     private fun fetchData() {
@@ -102,9 +122,10 @@ class Profile : Fragment() {
                 Log.d("Profile", "Response: $response")
                 Log.d("Profile", "Number of items received: ${response.length()}")
                 try {
-                    requireActivity().runOnUiThread {
-                        parseJson(response)
-                    }
+                    originalItemArrayList.clear()
+                    itemArrayList.clear()
+                    parseJson(response)
+                    adapter.notifyDataSetChanged()
                 } catch (e: JSONException) {
                     handleJsonParsingError(e)
                 }
@@ -114,7 +135,6 @@ class Profile : Fragment() {
             }
         )
 
-        // Tambahkan permintaan ke antrian
         dataQueue.add(jsonArrayRequest)
     }
 
@@ -129,11 +149,10 @@ class Profile : Fragment() {
                 dataJson.getString("tgl_roasting"),
                 dataJson.getString("deskripsi"),
                 dataJson.getString("link")
-
             )
+            originalItemArrayList.add(coffee)
             itemArrayList.add(coffee)
         }
-        adapter.notifyDataSetChanged()
         Log.d("Profile", "Number of items after parsing: ${itemArrayList.size}")
     }
 

@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.rival.tutorialloginregist.databinding.ActivityNotifikasiBinding
 import java.util.*
@@ -51,6 +52,8 @@ class NotifikasiActivity : AppCompatActivity() {
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val time = getTime()
 
+        Log.d("NotifikasiActivity", "Scheduled time: $time")
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val canScheduleExactAlarms = alarmManager.canScheduleExactAlarms()
             if (canScheduleExactAlarms) {
@@ -61,7 +64,9 @@ class NotifikasiActivity : AppCompatActivity() {
                 )
                 showAlert(time, title, message)
             } else {
-                // Handle jika perangkat tidak mendukung alarm exact
+                Log.d("NotifikasiActivity", "Cannot schedule exact alarms on this device")
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, time, pendingIntent)
+                showAlert(time, title, message)
             }
         } else {
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, time, pendingIntent)
@@ -77,9 +82,9 @@ class NotifikasiActivity : AppCompatActivity() {
         val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
 
         AlertDialog.Builder(this)
-            .setTitle("Notification Scheduled")
+            .setTitle("Notifikasi Telah dibuat!")
             .setMessage(
-                "Title: $title\nMessage: $message\nAt: ${dateFormat.format(date)} ${timeFormat.format(date)}"
+                "Judul: $title\nPesan: $message\n\nJam: ${dateFormat.format(date)} ${timeFormat.format(date)}"
             )
             .setPositiveButton("Okay") { _, _ -> }
             .show()

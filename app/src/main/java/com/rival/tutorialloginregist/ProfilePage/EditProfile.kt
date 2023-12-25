@@ -137,6 +137,7 @@ class EditProfile : AppCompatActivity() {
         if (!userFoto.isNullOrBlank()) {
             Glide.with(this)
                 .load(userFoto)
+                .circleCrop()
                 .into(imgFoto)
         }
 
@@ -289,7 +290,7 @@ class EditProfile : AppCompatActivity() {
             getSharedPreferences(sharedPreferencesFileName, Context.MODE_PRIVATE)
         val userFoto = sharedPreferences.getString(sharedPreferencesKeyUserFoto, "")
 
-        // Menampilkan gambar menggunakan Glide jika tersedia
+
         if (!userFoto.isNullOrBlank()) {
             Glide.with(this)
                 .load(userFoto)

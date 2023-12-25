@@ -108,12 +108,13 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPostalAddress" />
 
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/imgFoto"
         android:layout_width="120dp"
+        app:riv_corner_radius="20dp"
         android:layout_height="120dp"
         android:layout_marginStart="155dp"
-        android:background="@color/grey"
+        android:background="@drawable/foto"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="156dp"
         app:layout_constraintEnd_toEndOf="parent"

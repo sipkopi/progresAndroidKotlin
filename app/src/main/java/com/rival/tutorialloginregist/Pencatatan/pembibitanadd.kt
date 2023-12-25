@@ -3,6 +3,7 @@ package com.rival.tutorialloginregist.Pencatatan
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -60,8 +61,11 @@ class pembibitanadd : AppCompatActivity() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         editTextLatLong = findViewById(R.id.longLat)
         editTextLong = findViewById(R.id.edtLat)
+        textViewKetinggian = findViewById(R.id.editTextNumber3)
         editTextLong.isEnabled = false
+        textViewKetinggian.isEnabled = false
         editTextLatLong.isEnabled = false
+
 
             requestLocationUpdates()
 
@@ -129,13 +133,7 @@ class pembibitanadd : AppCompatActivity() {
                 android.Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             return
         }
         fusedLocationClient.lastLocation
@@ -143,19 +141,36 @@ class pembibitanadd : AppCompatActivity() {
                 // Handle lokasi terkini di sini
                 if (location != null) {
                     val latitude = location.latitude
-                    val longtitude = location.longitude
-
+                    val longitude = location.longitude
+                    val altitude = location.altitude.toInt()
+                    val textAddress = getAddressName(latitude, longitude) + ",(Tambahkan Detail Lokasi)"
                     // Set nilai latitude dan longitude pada EditText
                     val latLongText = "$latitude"
-                    val Longtitude =  "$longtitude"
-                    editTextLong.setText(Longtitude)
+                    val Longitude =  "$longitude"
+                    editTextLong.setText(Longitude)
                     editTextLatLong.setText(latLongText)
+                    textViewLokasi.text = textAddress
+                    textViewKetinggian.text = altitude.toString()
                 }
             }
             .addOnFailureListener { e ->
-                // Handle jika gagal mendapatkan lokasi
+                Log.e("LocationUpdate", "Error getting location", e)
             }
+
     }
+    private fun getAddressName(lat: Double, lon: Double): String {
+        var addressName = ""
+        val geoCoder = Geocoder(this, Locale.getDefault())
+        val address = geoCoder.getFromLocation(lat, lon, 1)
+
+        if (address != null && address.isNotEmpty()) {
+            addressName = address[0].locality
+        }
+
+        return addressName
+    }
+
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,

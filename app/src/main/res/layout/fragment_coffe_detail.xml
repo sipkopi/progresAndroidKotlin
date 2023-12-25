@@ -209,18 +209,18 @@
         app:layout_constraintStart_toStartOf="@+id/tglRoasting"
         app:layout_constraintTop_toBottomOf="@+id/tglRoasting" />
 
-    <TextView
-        android:id="@+id/detailmetode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/poppinsregular"
-        android:padding="9dp"
-        android:text=": Fullwash"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/detailRoasting"
-        app:layout_constraintTop_toBottomOf="@+id/detailRoasting" />
+            <TextView
+                android:id="@+id/detailmetode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppinsregular"
+                android:padding="9dp"
+                android:text="2024-12-7"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/detailRoasting"
+                app:layout_constraintTop_toBottomOf="@+id/detailRoasting" />
     <TextView
         android:id="@+id/expired"
         android:layout_width="wrap_content"

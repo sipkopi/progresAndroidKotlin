@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -24,6 +25,7 @@ class Settings : Fragment() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var textView6 : TextView
     private lateinit var textView2 : TextView
+    private lateinit var imageView4 : ImageView
     private lateinit var textView3 : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +63,7 @@ class Settings : Fragment() {
         textView6 = view.findViewById(R.id.textView6)
         textView3 = view.findViewById(R.id.textView3)
         textView2 = view.findViewById(R.id.textView2)
+        imageView4 = view.findViewById(R.id.imageView4)
 
         signOutButton.setOnClickListener {
             signOutAndStartSignInActivity()
@@ -70,6 +73,10 @@ class Settings : Fragment() {
             startActivity(intent)
         }
         textView6.setOnClickListener {
+            val intent = Intent(activity, EditProfile::class.java)
+            startActivity(intent)
+        }
+        imageView4.setOnClickListener {
             val intent = Intent(activity, EditProfile::class.java)
             startActivity(intent)
         }

@@ -17,7 +17,7 @@ class NotificationDbHelper(context: Context) :
         const val COLUMN_TITLE = "title"
         const val COLUMN_MESSAGE = "message"
         const val COLUMN_TIME = "time"
-        const val CHANNEL_ID = "your_channel_id" // Ganti dengan ID yang sesuai
+        const val CHANNEL_ID = "channel1"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {

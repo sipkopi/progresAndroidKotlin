@@ -1,6 +1,8 @@
 package com.rival.tutorialloginregist.laporan
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,11 +21,13 @@ class laporanActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var laporanAdapter: laporanAdapter
     private lateinit var dataQueue: RequestQueue
+    private val sharedPreferencesFileName = "UserProfile"
     private lateinit var jumlahHariTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_laporan)
+        val panggilan = loadUserProfileFromSharedPreferences(this)
 
         recyclerView = findViewById(R.id.rv_laporan)
 
@@ -32,11 +36,22 @@ class laporanActivity : AppCompatActivity() {
         recyclerView.adapter = laporanAdapter
 
         dataQueue = Volley.newRequestQueue(this)
-        fetchData()
+        fetchData(panggilan)
+    }
+    private fun loadUserProfileFromSharedPreferences(context: Context): String {
+        val sharedPreferences = context.getSharedPreferences(sharedPreferencesFileName, Context.MODE_PRIVATE)
+        val panggilan = sharedPreferences.getString("Panggilan", "")
+
+        Log.d("pembibitan", "Panggilan from SharedPreferences: $panggilan")
+
+        return panggilan.orEmpty()
     }
 
-    private fun fetchData() {
-        val url = "https://sipkopi.com/api/lahan/lahan.php"
+    private fun fetchData(sharedPreferencesKeyPanggilan: String) {
+        val url = "https://sipkopi.com/api/lahan/getlahan.php?user=$sharedPreferencesKeyPanggilan"
+
+        Log.d("pembibitan", "API Request URL: $url")
+
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
             Response.Listener { response ->
